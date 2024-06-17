@@ -19,17 +19,19 @@ vagrant ssh
 ***Ход выполнения заданий:***
 -----------------------------------------
 
-**1. Определение алгоритма с наилучшим сжатием, которые поддерживает zfs (gzip,zle, lzjb, lz4)**
- 
-**Порядок настройки и результаты:**
-
-1.1 Cоздание 4х файловых систем и применение различных алгоритмов сжатия;
 <details>
-<summary>- Проверка списка всех дисков, которые доступны в виртуальной машине: lsblk</summary>
+  <summary> 1. Определение алгоритма с наилучшим сжатием, которые поддерживает zfs (gzip,zle, lzjb, lz4)</summary>
 
-Доступно 8 дисков:
-
-   ```[vagrant@zfs ~]$ sudo -i
+**Порядок настройки и результаты:**
+  
+ 1.1 Cоздание 4х файловых систем и применение различных алгоритмов сжатия;
+<details>
+  <summary>- Проверка списка всех дисков, которые доступны в виртуальной машине: lsblk  </summary>
+    
+ Доступно 8 дисков:
+    
+  ```
+[vagrant@zfs ~]$ sudo -i
 [root@zfs ~]# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda      8:0    0   40G  0 disk 
@@ -42,36 +44,41 @@ sdf      8:80   0  512M  0 disk
 sdg      8:96   0  512M  0 disk 
 sdh      8:112  0  512M  0 disk 
 sdi      8:128  0  512M  0 disk 
-   ```
-  </details>
-<details>
-<summary>- Создаём 4 пула из двух дисков в режиме RAID 1:</summary>
+  ```
+</details>
 
-   ```[root@zfs ~]# zpool create otus1 mirror /dev/sdb /dev/sdc
+<details>
+  <summary>- Создаём 4 пула из двух дисков в режиме RAID 1:</summary>
+    
+  ```
+[root@zfs ~]# zpool create otus1 mirror /dev/sdb /dev/sdc
 [root@zfs ~]# zpool create otus2 mirror /dev/sdd /dev/sde
 [root@zfs ~]# zpool create otus3 mirror /dev/sdf /dev/sdg
 [root@zfs ~]# zpool create otus4 mirror /dev/sdh /dev/sdi
-   ```
-  </details>
-
+  ```
+</details>
+    
+<details>
+  <summary>- Проверка статуса и информации о zpool'ах: zpool status и zpool list</summary>
 
 <details>
-<summary>- Проверка статуса и информации о zpool'ах: zpool status и zpool list</summary>
-<details>
-<summary>[root@zfs ~]# zpool list</summary>
-   
-  ```[root@zfs ~]# zpool list
+  <summary>[root@zfs ~]# zpool list</summary>
+       
+  ```
+[root@zfs ~]# zpool list
 NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
 otus1   480M   106K   480M        -         -     0%     0%  1.00x    ONLINE  -
 otus2   480M  91.5K   480M        -         -     0%     0%  1.00x    ONLINE  -
 otus3   480M  91.5K   480M        -         -     0%     0%  1.00x    ONLINE  -
 otus4   480M   106K   480M        -         -     0%     0%  1.00x    ONLINE  -
-   ```
-  </details>
+  ```
+ </details>
+    	
 <details>
-<summary>[root@zfs ~]# zpool status</summary>
-   
-  ```[root@zfs ~]# zpool status
+  <summary>[root@zfs ~]# zpool status</summary>
+       
+  ```
+[root@zfs ~]# zpool status
   pool: otus1
  state: ONLINE
   scan: none requested
@@ -123,13 +130,15 @@ config:
 	    sdi     ONLINE       0     0     0
 
 errors: No known data errors
-   ```
-  </details>
-
- <details>
-<summary>[root@zfs ~]# df -h</summary>
+  ```
+  
+</details>
+	
+<details>
+  <summary>[root@zfs ~]# df -h </summary>
    
-  ```[root@zfs ~]# df -h
+  ```
+[root@zfs ~]# df -h
 Filesystem      Size  Used Avail Use% Mounted on
 devtmpfs        489M     0  489M   0% /dev
 tmpfs           496M     0  496M   0% /dev/shm
@@ -142,66 +151,76 @@ otus1           352M  128K  352M   1% /otus1
 otus2           352M  128K  352M   1% /otus2
 otus3           352M  128K  352M   1% /otus3
 otus4           352M  128K  352M   1% /otus4
-   ```
-  </details>
+  ```
+</details>  
+</details>
+    
+<details>
+  <summary> - Добавим разные алгоритмы сжатия в каждую файловую систему: </summary>
+
+<details>
+  <summary> - Алгоритм lzjb для zpool otus1</summary>
+    
+  ```
+[root@zfs ~]# zfs set compression=lzjb otus1
+```
+</details>
+<details>
+  <summary> - Алгоритм lz4 для zpool otus2</summary>
+    
+  ```
+[root@zfs ~]#  zfs set compression=lz4 otus2
+  ```
+</details>
+
+<details>
+  <summary> - Алгоритм gzip для zpool otus3</summary>
+    
+  ```
+[root@zfs ~]# zfs set compression=gzip-9 otus3
+  ```
+</details>
+<details>
+  <summary> - Алгоритм zle для zpool  otus4</summary>
+    
+  ```
+  [root@zfs ~]#  zfs set compression=zle otus4
+  ```
+</details>
+
+</details>
+    
+<details>
+  <summary> - Проверим, что все файловые системы имеют разные методы сжатия:</summary>
+    
+<details>
+  <summary>[root@zfs ~]# zfs get all | grep compressio</summary>
+    
+```
+    [root@zfs ~]# zfs get all | grep compression
+    otus1  compression           lzjb                   local
+    otus2  compression           lz4                    local
+    otus3  compression           gzip-9                 local
+    otus4  compression           zle                    local
+  ```
+</details>
+
+</details>
   
-  </details>
-
+  1.2 Проверка сжатия файлов:
+    
 <details>
-<summary>- Добавим разные алгоритмы сжатия в каждую файловую систему:</summary>
-<details>
-<summary>● Алгоритм lzjb для zpool otus1</summary>
-
-   ```[root@zfs ~]# zfs set compression=lzjb otus1
-   ```
-  </details>
-  <details>
-<summary>Алгоритм lz4 для zpool otus2</summary>
-
-   ```[root@zfs ~]#  zfs set compression=lz4 otus2
-   ```
-  </details>
-  <details>
-<summary>Алгоритм gzip для zpool otus3</summary>
-
-   ```[root@zfs ~]# zfs set compression=gzip-9 otus3
-   ```
-  </details>
-  <details>
-<summary>Алгоритм zle для zpool  otus4</summary>
-
-   ```[root@zfs ~]#  zfs set compression=zle otus4
-   ```
-  </details>
-  </details>
-
-
-  <details>
-<summary>- Проверим, что все файловые системы имеют разные методы сжатия:</summary>
-
-  <details>
-<summary>[root@zfs ~]# zfs get all | grep compressio</summary>
-
-   ```[root@zfs ~]# zfs get all | grep compression
-otus1  compression           lzjb                   local
-otus2  compression           lz4                    local
-otus3  compression           gzip-9                 local
-otus4  compression           zle                    local
-   ```
-  </details>
-  </details>
-
-1.2 Проверка сжатия файлов:
-
- <details>
-    <summary>- Проверим, что все файловые системы имеют разные методы сжатия:</summary>
+  <summary> - Проверим, что все файловые системы имеют разные методы сжатия: </summary>
 Скачаем один и тот же текстовый файл во все пулы: 
-   ```[root@zfs ~]# for i in {1..4}; do wget -P /otus$i https://gutenberg.org/cache/epub/2600/pg2600.converter.log; done
-      ``` 
-  <details>
-<summary>Проверим, что файл был скачан во все пулы: ls -l /otus*</summary>
 
-   ```[root@zfs ~]# ls -l /otus*
+  ```
+[root@zfs ~]# for i in {1..4}; do wget -P /otus$i https://gutenberg.org/cache/epub/2600/pg2600.converter.log; done
+  ``` 
+<details>
+ <summary> Проверим, что файл был скачан во все пулы: ls -l /otus*</summary>
+    
+```
+[root@zfs ~]# ls -l /otus*
 /otus1:
 total 22079
 -rw-r--r--. 1 root root 41052631 Jun 17 11:12 pg2600.converter.log
@@ -217,49 +236,60 @@ total 10962
 /otus4:
 total 40118
 -rw-r--r--. 1 root root 41052631 Jun 17 11:13 pg2600.converter.log
-   ```
-  </details>
-  </details>
+  ```
+</details>
 
-  <details>
-<summary>- Проверим, сколько места занимает один и тот же файл в разных пулах и проверим степень сжатия файлов:</summary>
-
-  <details>
-<summary>[root@zfs ~]# zfs list</summary>
-     
+</details>
+    
+<details>
+  <summary> - Проверим, сколько места занимает один и тот же файл в разных пулах и проверим степень сжатия файлов:</summary>
+    	
+<details>
+  <summary>[root@zfs ~]# zfs list</summary>
+         
 Уже на этом этапе видно, что самый оптимальный метод сжатия у нас используется в пуле otus3.
-
-
- ```[root@zfs ~]# zfs list
+    
+  ```
+[root@zfs ~]# zfs list
 NAME    USED  AVAIL     REFER  MOUNTPOINT
 otus1  21.7M   330M     21.6M  /otus1
 otus2  17.7M   334M     17.6M  /otus2
 otus3  10.8M   341M     10.7M  /otus3
 otus4  39.3M   313M     39.2M  /otus4
- ```
-  </details>
-  <details>
-<summary>zfs get all | grep compressratio | grep -v ref</summary>
- ```[root@zfs ~]# zfs get all | grep compressratio | grep -v ref
+  ```
+</details>
+
+<details>
+  <summary> zfs get all | grep compressratio | grep -v ref</summary>
+  
+  ```
+[root@zfs ~]# zfs get all | grep compressratio | grep -v ref
 otus1  compressratio         1.82x                  -
 otus2  compressratio         2.23x                  -
 otus3  compressratio         3.66x                  -
 otus4  compressratio         1.00x                  -
- ```
-  </details>
-  
+  ```
+</details>
+     
 Таким образом, у нас получается, что алгоритм gzip-9 самый эффективный по сжатию. 
- </details>
 
-**2. Определение настроек пула**
- 
-**Порядок настройки и результаты:**
-2.1 Загрузка архива и импорт пула : 
-- Загрузка архива
+</details>
+
+</details>
+
 <details>
-  <summary>wget -O archive.tar.gz --no-check-certificate 'https://drive.usercontent.google.com/download?id=1MvrcEp-WgAQe57aDEzxSRalPAwbNN1Bb&export=download' </summary>
+  <summary> 2. Определение настроек пула </summary>
+
+**Порядок настройки и результаты:**
+
+
+2.1 Загрузка архива и импорт пула : 
+
+<details>
+  <summary> - Загрузка архива: wget -O archive.tar.gz  </summary>
    
-   ```[root@zfs ~]# wget -O archive.tar.gz --no-check-certificate 'https://drive.usercontent.google.com/download?id=1MvrcEp-WgAQe57aDEzxSRalPAwbNN1Bb&export=download'
+  ```
+[root@zfs ~]# wget -O archive.tar.gz --no-check-certificate 'https://drive.usercontent.google.com/download?id=1MvrcEp-WgAQe57aDEzxSRalPAwbNN1Bb&export=download'
 --2024-06-17 11:17:14--  https://drive.usercontent.google.com/download?id=1MvrcEp-WgAQe57aDEzxSRalPAwbNN1Bb&export=download
 Resolving drive.usercontent.google.com (drive.usercontent.google.com)... 64.233.161.132, 2a00:1450:4010:c0e::84
 Connecting to drive.usercontent.google.com (drive.usercontent.google.com)|64.233.161.132|:443... connected.
@@ -270,31 +300,28 @@ Saving to: ‘archive.tar.gz’
 100%[=========================================================================================================================================================================================================>] 7,275,140   6.97MB/s   in 1.0s   
 
 2024-06-17 11:17:22 (6.97 MB/s) - ‘archive.tar.gz’ saved [7275140/7275140]
-   ```
+  ```
   
 </details>
 
-- Разархивация файла:
-
 <details>
-  <summary>[root@zfs ~]# tar -xzvf archive.tar.gz </summary>
+  <summary> - Разархивация файла: [root@zfs ~]# tar -xzvf archive.tar.gz </summary>
  
-   ```[root@zfs ~]# tar -xzvf archive.tar.gz
+  ```
+[root@zfs ~]# tar -xzvf archive.tar.gz
 zpoolexport/
 zpoolexport/filea
 zpoolexport/fileb
 [root@zfs ~]#
    ```
-  
 </details>
 
 
-- Проверим, возможно ли импортировать данный каталог в пул:
-
 <details>
-  <summary>[root@zfs ~]# zpool import -d zpoolexport/</summary>
+  <summary> - Проверим, возможно ли импортировать данный каталог в пул: [root@zfs ~]# zpool import -d zpoolexport/</summary>
      
-   ```[root@zfs ~]# zpool import -d zpoolexport/
+  ```
+[root@zfs ~]# zpool import -d zpoolexport/
    pool: otus
      id: 6554193320433390805
   state: ONLINE
@@ -306,21 +333,27 @@ zpoolexport/fileb
 	    /root/zpoolexport/filea  ONLINE
 	    /root/zpoolexport/fileb  ONLINE
 [root@zfs ~]#
-   ```
+  ```
 Данный вывод показывает нам имя пула, тип raid и его состав. 
-  </details>
 
-- Импорт загруженного пула к нам в ОС (имя пула otus):
+</details>
 
- ```[root@zfs ~]# zpool import -d zpoolexport/ otus
-   ```
-
-- Проверка результата загрузки пула: 
 <details>
-     <summary>[root@zfs ~]# zpool status otus</summary>
+  <summary> - Импорт загруженного пула к нам в ОС (имя пула otus): </summary>
+
+  ```
+[root@zfs ~]# zpool import -d zpoolexport/ otus
+  ```
+  
+</details>
+
+<details>
+  <summary> - Проверка результата загрузки пула: </summary>
+
 Команда zpool status выдаст нам информацию о составе импортированного пула.
    
-   ```[root@zfs ~]# zpool status otus
+  ```
+[root@zfs ~]# zpool status otus
   pool: otus
  state: ONLINE
   scan: none requested
@@ -333,16 +366,17 @@ config:
 	    /root/zpoolexport/fileb  ONLINE       0     0     0
 
 errors: No known data errors
-   ```
+  ```
  
 </details>
 
 
 2.2 Определение настроек пула: 
 <details>
-  <summary> - Запрос всех настроек пула [root@zfs ~]# zpool get all otus</summary>
+  <summary> - Запрос всех настроек пула [root@zfs ~]# zpool get all otus </summary>
 
-   ```[root@zfs ~]# zpool get all otus
+  ```
+[root@zfs ~]# zpool get all otus
 NAME  PROPERTY                       VALUE                          SOURCE
 otus  size                           480M                           -
 otus  capacity                       0%                             -
@@ -402,12 +436,11 @@ otus  feature@bookmark_v2            enabled                        local
   
 </details>
 
--
-
 <details>
   <summary> - Запрос сразу всех параметром файловой системы: [root@zfs ~]# zfs get all otus </summary>
 
-   ```[root@zfs ~]# zfs get all otus
+  ```
+[root@zfs ~]# zfs get all otus
 NAME  PROPERTY              VALUE                  SOURCE
 otus  type                  filesystem             -
 otus  creation              Fri May 15  4:00 2020  -
@@ -481,42 +514,43 @@ otus  keyformat             none                   default
 otus  pbkdf2iters           0                      default
 otus  special_small_blocks  0                      default
    ```
-  
+
 </details>
 
-
 <details>
-  <summary> - Размер пула  [root@zfs ~]# zfs get available otus</summary>
+  <summary> - Размер пула  [root@zfs ~]# zfs get available otus </summary>
 
-   ```[root@zfs ~]# zfs get available otus
+  ```
+[root@zfs ~]# zfs get available otus
 NAME  PROPERTY   VALUE  SOURCE
 otus  available  350M   -
 [root@zfs ~]#
-   ```
+  ```
   
 </details>
 
-
 <details>
-  <summary> - Тип файловой системы [root@zfs ~]# zfs get readonly otus </summary>
+  <summary> - Тип файловой системы: [root@zfs ~]# zfs get readonly otus </summary>
 
-   ```[root@zfs ~]# zfs get readonly otus
+  ```
+[root@zfs ~]# zfs get readonly otus
 NAME  PROPERTY  VALUE   SOURCE
 otus  readonly  off     default
 [root@zfs ~]#
-   ```
+  ```
   По типу FS мы можем понять, что позволяет выполнять чтение и запись
   
 </details>
 
 <details>
-  <summary>Значение recordsize: [root@zfs ~]# zfs get recordsize otus  </summary>
+  <summary> Значение recordsize: [root@zfs ~]# zfs get recordsize otus  </summary>
 
-   ```[root@zfs ~]# zfs get recordsize otus
+  ```
+[root@zfs ~]# zfs get recordsize otus
 NAME  PROPERTY    VALUE    SOURCE
 otus  recordsize  128K     local
 [root@zfs ~]#
-   ```
+  ```
   
 </details>
 
@@ -524,30 +558,40 @@ otus  recordsize  128K     local
 <details>
   <summary> - Тип сжатия (или параметр отключения): [root@zfs ~]# zfs get compression otus </summary>
 
-   ```[root@zfs ~]# zfs get compression otus
+  ```
+[root@zfs ~]# zfs get compression otus
 NAME  PROPERTY     VALUE     SOURCE
 otus  compression  zle       local
 [root@zfs ~]#
-   ```
+  ```
   
 </details>
+
 <details>
   <summary> - Тип контрольной суммы: [root@zfs ~]# zfs get checksum otus </summary>
 
-   ```[root@zfs ~]# zfs get checksum otus
+  ```
+[root@zfs ~]# zfs get checksum otus
 NAME  PROPERTY  VALUE      SOURCE
 otus  checksum  sha256     local
 [root@zfs ~]#
-   ```
+  ```
   
 </details>
 
-**3. Работа со снапшотом, поиск сообщения от преподавателя**
+</details>
+
+<details>
+  <summary> 3. Работа со снапшотом, поиск сообщения от преподавателя </summary>
+
+
+
 
 <details>
   <summary> 3.1 Скачиваем файл из удаленной директории: [root@zfs ~]# wget -O otus_task2.file  </summary>
 
-   ```[root@zfs ~]# wget -O otus_task2.file --no-check-certificate https://drive.usercontent.google.com/download?id=1wgxjih8YZ-cqLqaZVa0lA3h3Y029c3oI&export=download
+  ```
+[root@zfs ~]# wget -O otus_task2.file --no-check-certificate https://drive.usercontent.google.com/download?id=1wgxjih8YZ-cqLqaZVa0lA3h3Y029c3oI&export=download
 [1] 13845
 [root@zfs ~]# --2024-06-17 11:21:58--  https://drive.usercontent.google.com/download?id=1wgxjih8YZ-cqLqaZVa0lA3h3Y029c3oI
 Resolving drive.usercontent.google.com (drive.usercontent.google.com)... 173.194.220.132, 2a00:1450:4010:c05::84
@@ -568,35 +612,38 @@ Saving to: ‘otus_task2.file’
 </details>
 
 <details>
-  <summary>3.2 Восстановим файловую систему из снапшота: </summary>
+  <summary> 3.2 Восстановим файловую систему из снапшота: </summary>
 
-   ```[root@zfs ~]# zfs receive otus/test@today < otus_task2.file
-   ```
+  ```
+[root@zfs ~]# zfs receive otus/test@today < otus_task2.file
+  ```
   
 </details>
 
 <details>
-  <summary>3.3 Ищем сообщение в файле secret_message.а: </summary>
+  <summary> 3.3 Ищем сообщение в файле secret_message.а: </summary>
+  
 <details>
   <summary> - Ищем файл с именем “secret_message” в каталоге /otus/test : [root@zfs ~]# find /otus/test -name "secret_message"</summary>
 
-   ```[root@zfs ~]# find /otus/test -name "secret_message"
+   ```
+[root@zfs ~]# find /otus/test -name "secret_message"
 /otus/test/task1/file_mess/secret_message
 [root@zfs ~]# 
    ```
-  </details>
+</details>
 
 <details>
   <summary> - Смотрим содержимое найденного файла "secret_message": [root@zfs ~]# cat /otus/test/task1/file_mess/secret_message </summary>
 
-   ```[root@zfs ~]# cat /otus/test/task1/file_mess/secret_message
+   ```
+[root@zfs ~]# cat /otus/test/task1/file_mess/secret_message
 https://otus.ru/lessons/linux-hl/
-
 [root@zfs ~]#
    ```
   
 </details>
 
-  
-</details> 
- 
+</details>
+
+</details>
