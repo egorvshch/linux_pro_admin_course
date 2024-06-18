@@ -6,9 +6,9 @@
 
 На клиенте  монтирование и работа NFS организована с использованием NFSv3 по протоколу UDP
 
-Запуск, настройка NFS, firewall и экспорт директории на стороне сервера выполняется с использованием скрипта nfss_script.sh
+Запуск, настройка NFS, firewall и экспорт директории на стороне сервера выполняется с использованием скрипта [nfss_script.sh](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework07/nfss_script.sh)
 
-Запуск, настройка NFS, firewall, автоматического монтирования экспортированной директории на стороне клиента выполняется с использованием скрипта nfsс_script.sh
+Запуск, настройка NFS, firewall, автоматического монтирования экспортированной директории на стороне клиента выполняется с использованием скрипта [nfsс_script.sh](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework07/nfsc_script.sh)
 
 
 **Стек:**
@@ -25,6 +25,3 @@ vagrant ssh nfsс #For connection to nfs server VM
 vagrant ssh nfsс #For connection to nfs client VM
    ```
    
-   
-   
-   - [Старт vagrant и исходный статус файловой системы](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework05/command%20execution%20logs/start%20vagrant.txt)
