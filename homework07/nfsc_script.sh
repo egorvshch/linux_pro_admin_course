@@ -35,6 +35,12 @@ cd /mnt/
 mount | grep mnt
 #
 echo "--------------------------------"
+echo ">>> Check RPC work and mount points "
+echo "--------------------------------"
+#
+showmount -a 192.168.56.10
+#
+echo "--------------------------------"
 echo ">>> NFS client configuration complited"
 echo "--------------------------------"
 #
