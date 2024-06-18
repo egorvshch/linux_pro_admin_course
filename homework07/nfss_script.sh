@@ -31,7 +31,7 @@ echo "--------------------------------"
 systemctl enable nfs --now
 #
 echo "--------------------------------"
-echo ">>> Create dir for NFS server"
+echo ">>> Create dir for NFS server and grant privelegies"
 echo "--------------------------------"
 #
 mkdir -p /srv/share/upload
@@ -53,6 +53,12 @@ echo ">>> Check export our dir of NFS server "
 echo "--------------------------------"
 #
 exportfs -s
+#
+echo "--------------------------------"
+echo ">>> Check RPC work and mount points "
+echo "--------------------------------"
+#
+showmount -a 192.168.56.10
 #
 echo "--------------------------------"
 echo ">>> NFS server configuration complited"
