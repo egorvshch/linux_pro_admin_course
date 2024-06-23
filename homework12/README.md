@@ -4,24 +4,28 @@
 5. реализовать 2 конкурирующих процесса по CPU. пробовать запустить с разными nice
 Результат ДЗ - скрипт запускающий 2 процесса с разными nice и замеряющий время выполнения и лог консоли
 
-один и тот же скрипт fibonach.sh запускается с разным параметром nice командой ниже (команда time используется для измерения времени выполнения)
+один и тот же скрипт [fibonach.sh](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework12/fibonach.sh) запускается с разным параметром nice (команда time используется для измерения времени выполнения)
 
-лог выполнения ниже 
+```
+time nice -n 40 ./fibonach.sh 1000000 & time nice -n -30 ./fibonach.sh 1000000
+```
 
- скрипт сравнения и лог выполнения, из которого видно, что процесс с большим приоритетом выполняется быстрее
+лог выполнения:
+```
+root@evengtest:/home/eve/test_3# time nice -n 40 ./fibonach.sh 1000000 & time nice -n -30 ./fibonach.sh 1000000
+[1] 76029
+The Fibonacci series is : 
+The Fibonacci series is : 
+-4249520595888827205
 
-**Стек:**
-- VirtualBox 7.0.12, 
-- Vagrant 2.4.1, 
-- Vagrant Box centos/7 v2004.01
-- хостовая система: Ubuntu 22.04
+real	0m9.991s
+user	0m9.968s
+sys	0m0.009s
+-4249520595888827205
+[1]+  Done                    time nice -n 40 ./fibonach.sh 1000000
 
-*Запуск стенда:*
-
-   ```
-vagrant up
-vagrant ssh nfsс #For connection to nfs server VM
-vagrant ssh nfsс #For connection to nfs client VM
-   ```
-   
-скрипт [nfss_script.sh](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework07/nfss_script.sh)
+real	0m10.207s
+user	0m20.160s
+sys	0m0.022s
+root@evengtest:/home/eve/test_3#
+```
