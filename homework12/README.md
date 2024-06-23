@@ -6,7 +6,7 @@
 
 Результат:
 ----------
-один и тот же скрипт [fibonach.sh](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework12/fibonach.sh) запускается с разным параметром nice (команда time используется для измерения времени выполнения)
+Один и тот же скрипт [fibonach.sh](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework12/fibonach.sh) одновременно запускается с разным параметром nice (команда time используется для измерения времени выполнения):
 
 ```
 time nice -n 40 ./fibonach.sh 1000000 & time nice -n -30 ./fibonach.sh 1000000
