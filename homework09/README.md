@@ -2,7 +2,7 @@
 -----------------------------------------
 Задания:
 
-1. Включить отображение меню Grub.
+1. Включить отображение меню GRUB.
 2. Попасть в систему без пароля несколькими способами.
 3. Установить систему с LVM, после чего переименовать VG.
 
@@ -10,8 +10,8 @@
 
 Результаты:
 -----------------------------------------
-1. Включаем отображение меню Grub
-Для отображения меню при загрузке системы редактируем конфигурационный файл:
+### 1. Включаем отображение меню GRUB:
+ - Для отображения меню при загрузке системы редактируем параметр `GRUB_TIMEOUT=` в конфигурационном файле `/etc/default/grub`:
 
 ```
 egor@egor:~$ sudo nano /etc/default/grub
@@ -24,7 +24,7 @@ GRUB_CMDLINE_LINUX_DEFAULT=""
 GRUB_CMDLINE_LINUX=""
 ```
 
-Обновляем конфигурацию grub и перезагружаем ВМ для проверки:
+ - Обновляем конфигурацию grub и перезагружаем ВМ для проверки:
 ```
 egor@egor:~$ sudo update-grub
 Sourcing file `/etc/default/grub'
@@ -38,64 +38,57 @@ Check GRUB_DISABLE_OS_PROBER documentation entry.
 done
 egor@egor:~$ sudo reboot
 ```
+В результате при загрузке ВМ будет появляться меню GRUB на 10 секунд
 
-2. Попасть в систему без пароля несколькими способами
------------------------------------------------------
+### 2. Попасть в систему без пароля несколькими способами
 
-Открываем GUI VirtualBox , запускаем виртуальную машину и в меню grub при выборе ядра для загрузки нажимаем `e` (edit). Попадаем в окно, где мы можем изменить параметры загрузки:
+- Открываем GUI VirtualBox , запускаем виртуальную машину и в меню GRUB при выборе ядра для загрузки нажимаем `e` (edit):
+![Image 1](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/grub-menu.JPG)
 
-Image 1
+- Попадаем в окно, где мы можем изменить параметры загрузки:
+![Image 2](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/grub-edit.JPG)
 
-Способ № 1. В конце строки, начинающейся с `linux`, добавляем `init=/bin/bash` и нажимаем `сtrl-x` для загрузки в систему.
+#### Способ № 1. c `init=/bin/bash`
+- В конце строки, начинающейся с `linux`, добавляем `init=/bin/bash` и нажимаем `сtrl-x` для загрузки в систему.
+![Image 3](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/grub-edit-add.JPG)
 
-Image 2
+- Рутовая файловая система при этом монтируется в режиме Read-Only. Для монтирования ее в режим Read-Write вводим команду `mount -o remount,rw /`:
 
-Рутовая файловая система при этом монтируется в режиме Read-Only. Для монтирования ее в режим Read-Write вводим команду `mount -o remount,rw /`:
+![Image 4](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/remount.JPG)
 
-Image 3
+#### Способ №2. Recovery mode. 
+- При загрузке ВМ в меню grub выбираем вариант загрузки "Advanced options for Ubuntu":
 
-Способ №2. Recovery mode. При загрузке ВМ в меню grub выбираем вариант загрузки "Advanced options for Ubuntu":
+![Image 5](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/Advanced%20options%E2%80%A6.JPG)
 
-Image 4
+- Далее выбираем вариант recovery mode в названии:
 
-Далее выбираем вариант recovery mode в названии. Получим меню режима восстановления.
-В этом меню сначала включаем поддержку сети (network) для того, чтобы файловая система перемонтировалась в режим read/write
+![Image 6](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/Advanced%20options%E2%80%A62.JPG)
 
+- Получим меню режима восстановления:
 
-Далее выбираем пункт root и попадаем в консоль с пользователем root. В этой консоли можно производить любые манипуляции с системой
+![Image 7](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/Network.JPG)
 
-Image 4
+- В этом меню сначала включаем поддержку сети (network) для того, чтобы файловая система перемонтировалась в режим read/write.
+Далее выбираем пункт root и попадаем в консоль с пользователем root. В этой консоли можно производить любые манипуляции с системой:
 
+![Image 8](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/root.JPG)
 
-3. Установка системы с LVM, переименование VG
------------------------------------------------------
+### 3. Установка системы с LVM, переименование VG
+У нас используется Ubuntu 22.04 со стандартной разбивкой диска с использованием  LVM.
 
-Смотрим текущее состояние системы (список Volume Group) командой vgs и переименовываем VG `ubuntu-vg` в `ubuntu-otus` с помощью команды `vgrename ubuntu-vg ubuntu-otus`:
+-Смотрим текущее состояние системы (список Volume Group) командой vgs и переименовываем VG `ubuntu-vg` в `ubuntu-otus` с помощью команды `vgrename ubuntu-vg ubuntu-otus`:
 
-Image 6
+![Image 9](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/lvm_rename.JPG)
 
-Далее правим /boot/grub/grub.cfg. Везде заменяем старое название VG на новое:
+- Далее правим `/boot/grub/grub.cfg`. Везде заменяем старое название VG `ubuntu--vg`на новое `ubuntu--otus`:
+
+![Image 10](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/images/boot_grub.cfg.JPG)
+
+- Перезагружаем ВМ и проверяем:
 
 ```
-root@egor:/home/egor# nano /boot/grub/grub.cfg
-
-root@egor:/home/egor# cat /boot/grub/grub.cfg | grep ubuntu-- 
-	linux	/vmlinuz-5.15.0-107-generic root=/dev/mapper/ubuntu--otus-ubuntu--lv ro  
-		linux	/vmlinuz-5.15.0-107-generic root=/dev/mapper/ubuntu--otus-ubuntu--lv ro  
-		linux	/vmlinuz-5.15.0-107-generic root=/dev/mapper/ubuntu--otus-ubuntu--lv ro recovery nomodeset dis_ucode_ldr 
-root@egor:/home/egor# 
+root@egor:/home/egor# vgs
+  VG          #PV #LV #SN Attr   VSize   VFree 
+  ubuntu-otus   1   1   0 wz--n- <30.00g 15.00g
 ```
-
-Перезагружаем ВМ и проверяем:
-
-Image 5
-
-
-
-root@egor:/home/egor# nano /boot/grub/grub.cfg
-
-root@egor:/home/egor# cat /boot/grub/grub.cfg | grep ubuntu-- 
-	linux	/vmlinuz-5.15.0-107-generic root=/dev/mapper/ubuntu--otus-ubuntu--lv ro  
-		linux	/vmlinuz-5.15.0-107-generic root=/dev/mapper/ubuntu--otus-ubuntu--lv ro  
-		linux	/vmlinuz-5.15.0-107-generic root=/dev/mapper/ubuntu--otus-ubuntu--lv ro recovery nomodeset dis_ucode_ldr 
-root@egor:/home/egor# 
