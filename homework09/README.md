@@ -83,7 +83,7 @@ egor@egor:~$ sudo reboot
 
 - Далее правим `/boot/grub/grub.cfg`. Везде заменяем старое название VG `ubuntu--vg`на новое `ubuntu--otus`:
 
-![Image 10](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/images/boot_grub.cfg.JPG)
+![Image 10](https://github.com/egorvshch/linux_pro_admin_course/blob/main/homework09/images/boot_grub.cfg.JPG)
 
 - Перезагружаем ВМ и проверяем:
 
