@@ -1,0 +1,48 @@
+---
+- name: Create users and groups
+  hosts: pamtest
+  become: 'yes'
+  tasks:
+   - name: Create group
+     group:
+      name: admin
+      state: present
+      
+   - name: Create user otusadm
+     user:
+        name: otusadm
+        password: "{{ 'Otus2022!' | password_hash('sha512') }}"
+        shell: /bin/bash
+        createhome: yes
+        state: present
+   - name: Create user otus
+     user:
+        name: otus
+        password: "{{ 'Otus2022!' | password_hash('sha512') }}"
+        shell: /bin/bash
+        createhome: yes
+        state: present
+
+   - name: Adding root to group admin
+     user:
+        name: "{{ item }}"
+        groups: admin
+        append: yes
+     loop:
+        - root
+        - otusadm
+        - vagrant
+        
+   - name: Copy script file to VM
+     copy:
+      src: script/login.sh
+      dest: /usr/local/bin/login.sh
+      mode: '0755'
+
+   - name: Restrict Access through sshdCommand
+     lineinfile:
+      path: /etc/pam.d/sshd
+      regexp: 'auth'
+      firstmatch: yes
+      line: 'auth  required  pam_exec.so debug /usr/local/bin/login.sh'
+      state: present
