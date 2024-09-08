@@ -1,0 +1,172 @@
+---
+- name: Time configuration
+  hosts: all
+  become: 'yes'
+  
+  tasks:
+    - name: set timezone
+      shell:
+        timedatectl set-timezone  Asia/Yekaterinburg
+
+    - name: timesync-status
+      shell:
+        timedatectl timesync-status
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: print timedatectl
+      shell:
+        timedatectl
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: print date
+      shell:
+        date
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+- name: Install and config Nginx to web server
+  hosts: web
+  become: 'yes'
+
+  handlers:
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+        enabled: yes
+  
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+        
+    - name: Ensure nginx is running
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+        
+    - name: nginx error log configuration
+      replace:
+        path: /etc/nginx/nginx.conf
+        regexp: "{{item.regexp}}"
+        replace: "{{item.line}}"
+      loop:
+        - {regexp: 'access_log /var/log/nginx/access.log;', line: 'access_log  syslog:server=192.168.57.15:514,tag=nginx_access,severity=info combined;'}
+        - {regexp: 'error_log /var/log/nginx/error.log;', line: 'error_log   /var/log/nginx/error.log;\n        error_log   syslog:server=192.168.57.15:514,tag=nginx_error;'}
+      notify:
+        - restart nginx
+
+    - name: check nginx work
+      shell:
+        ss -tln | grep 80
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: check nginx curl work
+      shell:
+        cmd: 'curl http://localhost'
+        warn: false
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+      
+- name: Install RSyslog to log server
+  hosts: log
+  become: 'yes'
+
+  tasks:
+    - name: Install RSyslog
+      apt:
+        name: rsyslog
+        state: latest
+        update_cache: yes
+        
+    - name: Ensure rsyslog is running
+      systemd:
+        name: rsyslog
+        state: started
+        enabled: yes
+        
+    - name: configuration rsyslog listen
+      shell:
+        cmd: "{{item}}"
+        warn: false
+      loop:
+        - sed -i 's/^#module(load="imudp")$/module(load="imudp")/' /etc/rsyslog.conf
+        - sed -i 's/^#input(type="imudp" port="514")$/input(type="imudp" port="514")/' /etc/rsyslog.conf
+        - sed -i 's/^#module(load="imtcp")$/module(load="imtcp")/' /etc/rsyslog.conf
+        - sed -i 's/^#input(type="imtcp" port="514")$/input(type="imtcp" port="514")/' /etc/rsyslog.conf
+
+    - name: configuration rsyslog temlate for files
+      blockinfile:
+        path: /etc/rsyslog.conf
+        block: |
+          #Add remote logs
+          $template RemoteLogs,"var/log/rsyslog/%HOSTNAME%/%PROGRAMNAME%.log"
+          *.* ?RemoteLogs
+          & ~
+        state: present
+
+    - name: restart rsyslog
+      systemd:
+        name: rsyslog
+        state: restarted
+
+    - name: check rsyslog server listen ports
+      shell:
+        cmd: 'ss -tuln | grep 514'
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+
+- name: Install RSyslog to vm3
+  hosts: vm3
+  become: 'yes'
+
+  handlers:
+    - name: restart rsyslog
+      systemd:
+        name: rsyslog
+        state: restarted
+        enabled: yes
+
+  tasks:
+    - name: Install RSyslog
+      apt:
+        name: rsyslog
+        state: latest
+        update_cache: yes
+        
+    - name: Ensure rsyslog is running
+      systemd:
+        name: rsyslog
+        state: started
+        enabled: yes
+        
+    - name: configuration rsyslog send
+      blockinfile:
+        path: /etc/rsyslog.conf
+        insertafter: "$WorkDirectory"
+        marker: "# Send logs to Server 'log'  "
+        block: |
+          $PreserveFQDN on
+          $ActionQueueFileName queue
+          $ActionQueueMaxDiskSpace 1g
+          $ActionQueueSaveOnShutdown on
+          $ActionQueueType LinkedList
+          $ActionResumeRetryCount -1
+          *.*    @192.168.56.15:514
+        state: present
+      notify:
+        - restart rsyslog

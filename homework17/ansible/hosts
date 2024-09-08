@@ -1,0 +1,21 @@
+[clients]
+#192.168.56.10
+web ansible_host=127.0.0.1 ansible_port=2202 ansible_private_key_file=../.vagrant/machines/web/virtualbox/private_key
+vm3 ansible_host=127.0.0.1 ansible_port=2204 ansible_private_key_file=../.vagrant/machines/vm3/virtualbox/private_key
+
+[servers]
+#192.168.56.15
+log ansible_host=127.0.0.1 ansible_port=2203 ansible_private_key_file=../.vagrant/machines/log/virtualbox/private_key
+
+#[vm3]
+#192.168.56.20
+#ansible_host=127.0.0.1 ansible_port=2203 ansible_private_key_file=.vagrant/machines/vm3/virtualbox/private_key
+
+#[all:vars]
+#ansible_connection=ssh
+#ansible_user=vagrant
+#ansible_password=vagrant
+#host_key_checking=False
+#ansible_port=22
+#ansible_user=vagrant
+#ansible_private_key_file=.vagrant/machines/nginx/virtualbox/private_key
