@@ -1,7 +1,10 @@
 gist.github.com/leifg/4713995
+
 from
+
 https://stackoverflow.com/questions/27501019/vb-customize-storageattach-mounts-my-disk-first-time-but-changes-are-lost-aft
 
+```
 Vagrant.require_version ">= 1.4.3"
 VAGRANTFILE_API_VERSION = "2"
 
@@ -43,8 +46,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         shell.inline = "sudo /vagrant/bootstrap.sh"  
     end
 end
-
+```
 /vagrant/bootstrap.sh
+```
 #!/bin/bash  -x
 
 #   configure and mount second disk 
@@ -56,3 +60,4 @@ mkfs.xfs /dev/sdb1
 mkdir /mnt/disk
 echo `blkid /dev/sdb1 | awk '{print$2}' | sed -e 's/"//g'` /mnt/disk   xfs   noatime,nobarrier   0   0 >> /etc/fstab
 mount /mnt/disk
+```
