@@ -1,0 +1,1752 @@
+Xshell 7 (Build 0164)
+Copyright (c) 2020 NetSarang Computer, Inc. All rights reserved.
+
+Type `help' to learn how to use Xshell prompt.
+[C:\~]$ 
+
+Connecting to 10.250.156.100:22...
+Connection established.
+To escape to local shell, press 'Ctrl+Alt+]'.
+
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-35-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Mon Oct  7 12:45:32 PM UTC 2024
+
+  System load:  0.8037109375       Users logged in:           1
+  Usage of /:   19.2% of 96.88GB   IPv4 address for ens160:   10.250.156.100
+  Memory usage: 2%                 IPv4 address for vboxnet0: 192.168.56.1
+  Swap usage:   0%                 IPv4 address for vboxnet1: 192.168.50.1
+  Processes:    273
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+49 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+2 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+*** System restart required ***
+Last login: Mon Oct  7 09:53:19 2024 from 10.30.51.13
+eve@evengtest:~$ sudo su
+[sudo] password for eve: 
+root@evengtest:/home/eve# 
+root@evengtest:/home/eve# 
+root@evengtest:/home/eve# 
+root@evengtest:/home/eve# cd homework19/
+root@evengtest:/home/eve/homework19# vagrant status 
+Current machine states:
+
+inetRouter                not created (virtualbox)
+centralRouter             not created (virtualbox)
+centralServer             not created (virtualbox)
+office1Router             not created (virtualbox)
+office1Server             not created (virtualbox)
+office2Router             not created (virtualbox)
+office2Server             not created (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+root@evengtest:/home/eve/homework19# vagrant up
+Bringing machine 'inetRouter' up with 'virtualbox' provider...
+Bringing machine 'centralRouter' up with 'virtualbox' provider...
+Bringing machine 'centralServer' up with 'virtualbox' provider...
+Bringing machine 'office1Router' up with 'virtualbox' provider...
+Bringing machine 'office1Server' up with 'virtualbox' provider...
+Bringing machine 'office2Router' up with 'virtualbox' provider...
+Bringing machine 'office2Server' up with 'virtualbox' provider...
+==> inetRouter: You assigned a static IP ending in ".1" to this machine.
+==> inetRouter: This is very often used by the router and can cause the
+==> inetRouter: network to not work properly. If the network doesn't work
+==> inetRouter: properly, try changing this IP.
+==> inetRouter: Importing base box 'generic/ubuntu2204'...
+==> inetRouter: Matching MAC address for NAT networking...
+==> inetRouter: You assigned a static IP ending in ".1" to this machine.
+==> inetRouter: This is very often used by the router and can cause the
+==> inetRouter: network to not work properly. If the network doesn't work
+==> inetRouter: properly, try changing this IP.
+==> inetRouter: Setting the name of the VM: homework19_inetRouter_1728305235887_93675
+==> inetRouter: Clearing any previously set network interfaces...
+==> inetRouter: Preparing network interfaces based on configuration...
+    inetRouter: Adapter 1: nat
+    inetRouter: Adapter 2: intnet
+    inetRouter: Adapter 8: hostonly
+==> inetRouter: Forwarding ports...
+    inetRouter: 22 (guest) => 2222 (host) (adapter 1)
+==> inetRouter: Running 'pre-boot' VM customizations...
+==> inetRouter: Booting VM...
+==> inetRouter: Waiting for machine to boot. This may take a few minutes...
+    inetRouter: SSH address: 127.0.0.1:2222
+    inetRouter: SSH username: vagrant
+    inetRouter: SSH auth method: private key
+    inetRouter: Warning: Remote connection disconnect. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Remote connection disconnect. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Remote connection disconnect. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Remote connection disconnect. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Remote connection disconnect. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Remote connection disconnect. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: Warning: Remote connection disconnect. Retrying...
+    inetRouter: Warning: Connection reset. Retrying...
+    inetRouter: 
+    inetRouter: Vagrant insecure key detected. Vagrant will automatically replace
+    inetRouter: this with a newly generated keypair for better security.
+    inetRouter: 
+    inetRouter: Inserting generated public key within guest...
+    inetRouter: Removing insecure key from the guest if it's present...
+    inetRouter: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> inetRouter: Machine booted and ready!
+==> inetRouter: Checking for guest additions in VM...
+==> inetRouter: Setting hostname...
+==> inetRouter: Configuring and enabling network interfaces...
+==> inetRouter: Running provisioner: shell...
+    inetRouter: Running: inline script
+==> centralRouter: You assigned a static IP ending in ".1" to this machine.
+==> centralRouter: This is very often used by the router and can cause the
+==> centralRouter: network to not work properly. If the network doesn't work
+==> centralRouter: properly, try changing this IP.
+==> centralRouter: Importing base box 'generic/ubuntu2204'...
+
+==> centralRouter: Matching MAC address for NAT networking...
+==> centralRouter: You assigned a static IP ending in ".1" to this machine.
+==> centralRouter: This is very often used by the router and can cause the
+==> centralRouter: network to not work properly. If the network doesn't work
+==> centralRouter: properly, try changing this IP.
+==> centralRouter: Setting the name of the VM: homework19_centralRouter_1728305547910_7012
+==> centralRouter: Fixed port collision for 22 => 2222. Now on port 2200.
+==> centralRouter: Clearing any previously set network interfaces...
+==> centralRouter: Preparing network interfaces based on configuration...
+    centralRouter: Adapter 1: nat
+    centralRouter: Adapter 2: intnet
+    centralRouter: Adapter 3: intnet
+    centralRouter: Adapter 4: intnet
+    centralRouter: Adapter 5: intnet
+    centralRouter: Adapter 6: intnet
+    centralRouter: Adapter 7: intnet
+    centralRouter: Adapter 8: hostonly
+==> centralRouter: Forwarding ports...
+    centralRouter: 22 (guest) => 2200 (host) (adapter 1)
+==> centralRouter: Running 'pre-boot' VM customizations...
+==> centralRouter: Booting VM...
+==> centralRouter: Waiting for machine to boot. This may take a few minutes...
+    centralRouter: SSH address: 127.0.0.1:2200
+    centralRouter: SSH username: vagrant
+    centralRouter: SSH auth method: private key
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Remote connection disconnect. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Remote connection disconnect. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Remote connection disconnect. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Remote connection disconnect. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Remote connection disconnect. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Remote connection disconnect. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: Warning: Connection reset. Retrying...
+    centralRouter: 
+    centralRouter: Vagrant insecure key detected. Vagrant will automatically replace
+    centralRouter: this with a newly generated keypair for better security.
+    centralRouter: 
+    centralRouter: Inserting generated public key within guest...
+    centralRouter: Removing insecure key from the guest if it's present...
+    centralRouter: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> centralRouter: Machine booted and ready!
+==> centralRouter: Checking for guest additions in VM...
+==> centralRouter: Setting hostname...
+==> centralRouter: Configuring and enabling network interfaces...
+==> centralRouter: Running provisioner: shell...
+    centralRouter: Running: inline script
+==> centralServer: Importing base box 'generic/ubuntu2204'...
+
+==> centralServer: Matching MAC address for NAT networking...
+==> centralServer: Setting the name of the VM: homework19_centralServer_1728305874704_45427
+==> centralServer: Fixed port collision for 22 => 2222. Now on port 2201.
+==> centralServer: Clearing any previously set network interfaces...
+==> centralServer: Preparing network interfaces based on configuration...
+    centralServer: Adapter 1: nat
+    centralServer: Adapter 2: intnet
+    centralServer: Adapter 8: hostonly
+==> centralServer: Forwarding ports...
+    centralServer: 22 (guest) => 2201 (host) (adapter 1)
+==> centralServer: Running 'pre-boot' VM customizations...
+==> centralServer: Booting VM...
+==> centralServer: Waiting for machine to boot. This may take a few minutes...
+    centralServer: SSH address: 127.0.0.1:2201
+    centralServer: SSH username: vagrant
+    centralServer: SSH auth method: private key
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Remote connection disconnect. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Remote connection disconnect. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Remote connection disconnect. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Remote connection disconnect. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: Warning: Remote connection disconnect. Retrying...
+    centralServer: Warning: Connection reset. Retrying...
+    centralServer: 
+    centralServer: Vagrant insecure key detected. Vagrant will automatically replace
+    centralServer: this with a newly generated keypair for better security.
+    centralServer: 
+    centralServer: Inserting generated public key within guest...
+    centralServer: Removing insecure key from the guest if it's present...
+    centralServer: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> centralServer: Machine booted and ready!
+==> centralServer: Checking for guest additions in VM...
+==> centralServer: Setting hostname...
+==> centralServer: Configuring and enabling network interfaces...
+==> centralServer: Running provisioner: shell...
+    centralServer: Running: inline script
+==> office1Router: You assigned a static IP ending in ".1" to this machine.
+==> office1Router: This is very often used by the router and can cause the
+==> office1Router: network to not work properly. If the network doesn't work
+==> office1Router: properly, try changing this IP.
+==> office1Router: Importing base box 'generic/ubuntu2204'...
+Progress: 20%
+==> office1Router: Matching MAC address for NAT networking...
+==> office1Router: You assigned a static IP ending in ".1" to this machine.
+==> office1Router: This is very often used by the router and can cause the
+==> office1Router: network to not work properly. If the network doesn't work
+==> office1Router: properly, try changing this IP.
+==> office1Router: Setting the name of the VM: homework19_office1Router_1728306178789_10223
+==> office1Router: Fixed port collision for 22 => 2222. Now on port 2202.
+==> office1Router: Clearing any previously set network interfaces...
+==> office1Router: Preparing network interfaces based on configuration...
+    office1Router: Adapter 1: nat
+    office1Router: Adapter 2: intnet
+    office1Router: Adapter 3: intnet
+    office1Router: Adapter 4: intnet
+    office1Router: Adapter 5: intnet
+    office1Router: Adapter 6: intnet
+    office1Router: Adapter 8: hostonly
+==> office1Router: Forwarding ports...
+    office1Router: 22 (guest) => 2202 (host) (adapter 1)
+==> office1Router: Running 'pre-boot' VM customizations...
+==> office1Router: Booting VM...
+==> office1Router: Waiting for machine to boot. This may take a few minutes...
+    office1Router: SSH address: 127.0.0.1:2202
+    office1Router: SSH username: vagrant
+    office1Router: SSH auth method: private key
+
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Remote connection disconnect. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: Warning: Connection reset. Retrying...
+    office1Router: 
+    office1Router: Vagrant insecure key detected. Vagrant will automatically replace
+    office1Router: this with a newly generated keypair for better security.
+    office1Router: 
+    office1Router: Inserting generated public key within guest...
+    office1Router: Removing insecure key from the guest if it's present...
+    office1Router: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> office1Router: Machine booted and ready!
+==> office1Router: Checking for guest additions in VM...
+==> office1Router: Setting hostname...
+==> office1Router: Configuring and enabling network interfaces...
+==> office1Router: Running provisioner: shell...
+    office1Router: Running: inline script
+==> office1Server: Importing base box 'generic/ubuntu2204'...
+==> office1Server: Matching MAC address for NAT networking...
+==> office1Server: Setting the name of the VM: homework19_office1Server_1728306499410_72010
+==> office1Server: Fixed port collision for 22 => 2222. Now on port 2203.
+==> office1Server: Clearing any previously set network interfaces...
+==> office1Server: Preparing network interfaces based on configuration...
+    office1Server: Adapter 1: nat
+    office1Server: Adapter 2: intnet
+    office1Server: Adapter 8: hostonly
+==> office1Server: Forwarding ports...
+    office1Server: 22 (guest) => 2203 (host) (adapter 1)
+==> office1Server: Running 'pre-boot' VM customizations...
+==> office1Server: Booting VM...
+==> office1Server: Waiting for machine to boot. This may take a few minutes...
+    office1Server: SSH address: 127.0.0.1:2203
+    office1Server: SSH username: vagrant
+    office1Server: SSH auth method: private key
+
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Remote connection disconnect. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Remote connection disconnect. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Remote connection disconnect. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Remote connection disconnect. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Remote connection disconnect. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: Warning: Remote connection disconnect. Retrying...
+    office1Server: Warning: Connection reset. Retrying...
+    office1Server: 
+    office1Server: Vagrant insecure key detected. Vagrant will automatically replace
+    office1Server: this with a newly generated keypair for better security.
+    office1Server: 
+    office1Server: Inserting generated public key within guest...
+    office1Server: Removing insecure key from the guest if it's present...
+    office1Server: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> office1Server: Machine booted and ready!
+==> office1Server: Checking for guest additions in VM...
+==> office1Server: Setting hostname...
+==> office1Server: Configuring and enabling network interfaces...
+==> office1Server: Running provisioner: shell...
+    office1Server: Running: inline script
+==> office2Router: You assigned a static IP ending in ".1" to this machine.
+==> office2Router: This is very often used by the router and can cause the
+==> office2Router: network to not work properly. If the network doesn't work
+==> office2Router: properly, try changing this IP.
+==> office2Router: Importing base box 'generic/ubuntu2204'...
+==> office2Router: Matching MAC address for NAT networking...
+==> office2Router: You assigned a static IP ending in ".1" to this machine.
+==> office2Router: This is very often used by the router and can cause the
+==> office2Router: network to not work properly. If the network doesn't work
+==> office2Router: properly, try changing this IP.
+==> office2Router: Setting the name of the VM: homework19_office2Router_1728306813422_75317
+==> office2Router: Fixed port collision for 22 => 2222. Now on port 2204.
+==> office2Router: Clearing any previously set network interfaces...
+==> office2Router: Preparing network interfaces based on configuration...
+    office2Router: Adapter 1: nat
+    office2Router: Adapter 2: intnet
+    office2Router: Adapter 3: intnet
+    office2Router: Adapter 4: intnet
+    office2Router: Adapter 5: intnet
+    office2Router: Adapter 8: hostonly
+==> office2Router: Forwarding ports...
+    office2Router: 22 (guest) => 2204 (host) (adapter 1)
+==> office2Router: Running 'pre-boot' VM customizations...
+==> office2Router: Booting VM...
+==> office2Router: Waiting for machine to boot. This may take a few minutes...
+    office2Router: SSH address: 127.0.0.1:2204
+    office2Router: SSH username: vagrant
+    office2Router: SSH auth method: private key
+
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Remote connection disconnect. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: Warning: Connection reset. Retrying...
+    office2Router: 
+    office2Router: Vagrant insecure key detected. Vagrant will automatically replace
+    office2Router: this with a newly generated keypair for better security.
+    office2Router: 
+    office2Router: Inserting generated public key within guest...
+    office2Router: Removing insecure key from the guest if it's present...
+    office2Router: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> office2Router: Machine booted and ready!
+==> office2Router: Checking for guest additions in VM...
+==> office2Router: Setting hostname...
+==> office2Router: Configuring and enabling network interfaces...
+==> office2Router: Running provisioner: shell...
+    office2Router: Running: inline script
+==> office2Server: Importing base box 'generic/ubuntu2204'...
+
+==> office2Server: Matching MAC address for NAT networking...
+==> office2Server: Setting the name of the VM: homework19_office2Server_1728307122697_4250
+==> office2Server: Fixed port collision for 22 => 2222. Now on port 2205.
+==> office2Server: Clearing any previously set network interfaces...
+==> office2Server: Preparing network interfaces based on configuration...
+    office2Server: Adapter 1: nat
+    office2Server: Adapter 2: intnet
+    office2Server: Adapter 8: hostonly
+==> office2Server: Forwarding ports...
+    office2Server: 22 (guest) => 2205 (host) (adapter 1)
+==> office2Server: Running 'pre-boot' VM customizations...
+==> office2Server: Booting VM...
+==> office2Server: Waiting for machine to boot. This may take a few minutes...
+    office2Server: SSH address: 127.0.0.1:2205
+    office2Server: SSH username: vagrant
+    office2Server: SSH auth method: private key
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Remote connection disconnect. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Remote connection disconnect. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Remote connection disconnect. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Remote connection disconnect. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Remote connection disconnect. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Remote connection disconnect. Retrying...
+
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Connection reset. Retrying...
+    office2Server: Warning: Remote connection disconnect. Retrying...
+    office2Server: 
+    office2Server: Vagrant insecure key detected. Vagrant will automatically replace
+    office2Server: this with a newly generated keypair for better security.
+    office2Server: 
+    office2Server: Inserting generated public key within guest...
+    office2Server: Removing insecure key from the guest if it's present...
+    office2Server: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> office2Server: Machine booted and ready!
+==> office2Server: Checking for guest additions in VM...
+==> office2Server: Setting hostname...
+==> office2Server: Configuring and enabling network interfaces...
+==> office2Server: Running provisioner: shell...
+    office2Server: Running: inline script
+==> office2Server: Running provisioner: ansible...
+    office2Server: Running ansible-playbook...
+
+PLAY [Time configuration] ******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [office2Server]
+ok: [inetRouter]
+ok: [centralRouter]
+ok: [office1Router]
+ok: [office1Server]
+ok: [office2Router]
+ok: [centralServer]
+
+TASK [set timezone] ************************************************************
+changed: [inetRouter]
+changed: [office2Server]
+changed: [office1Router]
+changed: [centralRouter]
+changed: [office1Server]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [timesync-status] *********************************************************
+changed: [inetRouter]
+changed: [office2Server]
+changed: [centralRouter]
+changed: [office1Server]
+changed: [office1Router]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+
+TASK [print timedatectl] *******************************************************
+changed: [inetRouter]
+changed: [office2Server]
+changed: [office1Server]
+changed: [office1Router]
+changed: [centralRouter]
+changed: [centralServer]
+changed: [office2Router]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-10-07 18:23:39 +05",
+        "           Universal time: Mon 2024-10-07 13:23:39 UTC",
+        "                 RTC time: Mon 2024-10-07 13:22:21",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: no",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-10-07 18:23:39 +05",
+        "           Universal time: Mon 2024-10-07 13:23:39 UTC",
+        "                 RTC time: Mon 2024-10-07 13:21:40",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: no",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-10-07 18:23:40 +05",
+        "           Universal time: Mon 2024-10-07 13:23:40 UTC",
+        "                 RTC time: Mon 2024-10-07 13:21:39",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: no",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-10-07 18:23:41 +05",
+        "           Universal time: Mon 2024-10-07 13:23:41 UTC",
+        "                 RTC time: Mon 2024-10-07 13:23:49",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: no",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-10-07 18:23:52 +05",
+        "           Universal time: Mon 2024-10-07 13:23:52 UTC",
+        "                 RTC time: Mon 2024-10-07 13:23:51",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: yes",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-10-07 18:23:41 +05",
+        "           Universal time: Mon 2024-10-07 13:23:41 UTC",
+        "                 RTC time: Mon 2024-10-07 13:22:40",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: no",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-10-07 18:23:40 +05",
+        "           Universal time: Mon 2024-10-07 13:23:40 UTC",
+        "                 RTC time: Mon 2024-10-07 13:21:42",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: no",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+
+TASK [print date] **************************************************************
+changed: [inetRouter]
+changed: [office1Server]
+changed: [centralRouter]
+changed: [office2Server]
+changed: [office1Router]
+changed: [centralServer]
+changed: [office2Router]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "Mon Oct  7 06:23:44 PM +05 2024"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "Mon Oct  7 06:23:43 PM +05 2024"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "Mon Oct  7 06:23:45 PM +05 2024"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "Mon Oct  7 06:23:55 PM +05 2024"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "Mon Oct  7 06:23:56 PM +05 2024"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "Mon Oct  7 06:23:45 PM +05 2024"
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "Mon Oct  7 06:23:44 PM +05 2024"
+    ]
+}
+
+TASK [Install traceroute] ******************************************************
+changed: [office1Server]
+changed: [office2Server]
+changed: [centralRouter]
+changed: [inetRouter]
+changed: [office1Router]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [ufw disable] *************************************************************
+changed: [inetRouter]
+changed: [centralRouter]
+changed: [office1Router]
+changed: [office2Server]
+changed: [office1Server]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [print status ufw] ********************************************************
+changed: [inetRouter]
+changed: [centralRouter]
+changed: [office1Router]
+changed: [office1Server]
+changed: [office2Server]
+changed: [centralServer]
+changed: [office2Router]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+
+TASK [Set up NAT on inetRouter] ************************************************
+skipping: [office2Server] => (item={'src': '../files/iptables_rules.ipv4', 'dest': '/etc/iptables_rules.ipv4', 'mode': '0644'}) 
+skipping: [office2Server] => (item={'src': '../files/iptables', 'dest': '/etc/network/if-pre-up.d/iptables', 'mode': '0755'}) 
+skipping: [office1Router] => (item={'src': '../files/iptables_rules.ipv4', 'dest': '/etc/iptables_rules.ipv4', 'mode': '0644'}) 
+skipping: [office1Router] => (item={'src': '../files/iptables', 'dest': '/etc/network/if-pre-up.d/iptables', 'mode': '0755'}) 
+skipping: [centralRouter] => (item={'src': '../files/iptables_rules.ipv4', 'dest': '/etc/iptables_rules.ipv4', 'mode': '0644'}) 
+skipping: [centralRouter] => (item={'src': '../files/iptables', 'dest': '/etc/network/if-pre-up.d/iptables', 'mode': '0755'}) 
+skipping: [office1Server] => (item={'src': '../files/iptables_rules.ipv4', 'dest': '/etc/iptables_rules.ipv4', 'mode': '0644'}) 
+skipping: [office1Server] => (item={'src': '../files/iptables', 'dest': '/etc/network/if-pre-up.d/iptables', 'mode': '0755'}) 
+skipping: [office2Router] => (item={'src': '../files/iptables_rules.ipv4', 'dest': '/etc/iptables_rules.ipv4', 'mode': '0644'}) 
+skipping: [centralServer] => (item={'src': '../files/iptables_rules.ipv4', 'dest': '/etc/iptables_rules.ipv4', 'mode': '0644'}) 
+skipping: [centralServer] => (item={'src': '../files/iptables', 'dest': '/etc/network/if-pre-up.d/iptables', 'mode': '0755'}) 
+skipping: [office2Router] => (item={'src': '../files/iptables', 'dest': '/etc/network/if-pre-up.d/iptables', 'mode': '0755'}) 
+changed: [inetRouter] => (item={'src': '../files/iptables_rules.ipv4', 'dest': '/etc/iptables_rules.ipv4', 'mode': '0644'})
+changed: [inetRouter] => (item={'src': '../files/iptables', 'dest': '/etc/network/if-pre-up.d/iptables', 'mode': '0755'})
+
+TASK [set up ip forwarding across routers] ********************************************************************************************************************************************************************************************************
+skipping: [centralServer]
+skipping: [office1Server]
+skipping: [office2Server]
+changed: [inetRouter]
+changed: [centralRouter]
+changed: [office1Router]
+changed: [office2Router]
+
+TASK [print status net.ipv4.forwarding] ***********************************************************************************************************************************************************************************************************
+[WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+changed: [inetRouter]
+changed: [office1Server]
+changed: [office2Server]
+changed: [centralServer]
+changed: [centralRouter]
+changed: [office1Router]
+changed: [office2Router]
+
+TASK [debug] **************************************************************************************************************************************************************************************************************************************
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 0"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 0"
+    ]
+}
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 0"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+
+TASK [disable default route] ***************************************************
+skipping: [inetRouter]
+changed: [centralRouter]
+changed: [office1Router]
+changed: [office1Server]
+changed: [office2Server]
+changed: [centralServer]
+changed: [office2Router]
+
+TASK [add routes for all routers] **********************************************
+changed: [centralRouter]
+changed: [inetRouter]
+changed: [office1Server]
+changed: [office2Server]
+changed: [office1Router]
+changed: [centralServer]
+changed: [office2Router]
+
+TASK [netplan apply] ***********************************************************
+changed: [inetRouter]
+changed: [office1Server]
+changed: [office1Router]
+changed: [centralRouter]
+changed: [office2Server]
+changed: [centralServer]
+changed: [office2Router]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": []
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": []
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": []
+}
+ok: [office1Router] => {
+    "results.stdout_lines": []
+}
+ok: [office1Server] => {
+    "results.stdout_lines": []
+}
+ok: [centralServer] => {
+    "results.stdout_lines": []
+}
+ok: [office2Router] => {
+    "results.stdout_lines": []
+}
+
+TASK [show addresses output] ***************************************************
+changed: [inetRouter]
+changed: [office2Server]
+changed: [office1Router]
+changed: [office1Server]
+changed: [centralRouter]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86394sec preferred_lft 86394sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:1a:f6:47 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.1.2/25 brd 192.168.1.127 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe1a:f647/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:36:d0:26 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.31/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe36:d026/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86388sec preferred_lft 86388sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:6c:8c:2e brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.2/30 brd 192.168.255.3 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe6c:8c2e/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:1c:61:8a brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s9",
+        "    inet 192.168.0.1/28 brd 192.168.0.15 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe1c:618a/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "5: eth3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:5c:58:1a brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s10",
+        "    inet 192.168.0.33/28 brd 192.168.0.47 scope global eth3",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe5c:581a/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "6: eth4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:25:32:69 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s16",
+        "    inet 192.168.0.65/26 brd 192.168.0.127 scope global eth4",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe25:3269/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "7: eth5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:47:d4:ff brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s17",
+        "    inet 192.168.255.9/30 brd 192.168.255.11 scope global eth5",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe47:d4ff/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "8: eth6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:4b:f4:d2 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s18",
+        "    inet 192.168.255.5/30 brd 192.168.255.7 scope global eth6",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe4b:f4d2/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "9: eth7: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:7e:42:2b brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.11/24 brd 192.168.50.255 scope global eth7",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe7e:422b/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86388sec preferred_lft 86388sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:42:56:1f brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.10/30 brd 192.168.255.11 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe42:561f/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:a7:03:f1 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s9",
+        "    inet 192.168.2.1/26 brd 192.168.2.63 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fea7:3f1/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "5: eth3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:0d:66:fa brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s10",
+        "    inet 192.168.2.65/26 brd 192.168.2.127 scope global eth3",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe0d:66fa/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "6: eth4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:d1:a7:0a brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s16",
+        "    inet 192.168.2.129/26 brd 192.168.2.191 scope global eth4",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fed1:a70a/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "7: eth5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:28:e6:76 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s17",
+        "    inet 192.168.2.193/26 brd 192.168.2.255 scope global eth5",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe28:e676/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "8: eth6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:cd:cc:c4 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.20/24 brd 192.168.50.255 scope global eth6",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fecd:ccc4/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86384sec preferred_lft 86384sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:cb:71:53 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.1/30 brd 192.168.255.3 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fecb:7153/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:69:46:b6 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.10/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe69:46b6/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86386sec preferred_lft 86386sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:85:90:3b brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.2.130/26 brd 192.168.2.191 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe85:903b/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:64:12:e0 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.21/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe64:12e0/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86396sec preferred_lft 86396sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:18:e9:68 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.6/30 brd 192.168.255.7 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe18:e968/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:73:13:73 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s9",
+        "    inet 192.168.1.1/25 brd 192.168.1.127 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe73:1373/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "5: eth3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:50:fe:f5 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s10",
+        "    inet 192.168.1.129/26 brd 192.168.1.191 scope global eth3",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe50:fef5/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "6: eth4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:f6:8b:aa brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s16",
+        "    inet 192.168.1.193/26 brd 192.168.1.255 scope global eth4",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fef6:8baa/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "7: eth5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:6f:c2:7d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.30/24 brd 192.168.50.255 scope global eth5",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe6f:c27d/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86393sec preferred_lft 86393sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:58:af:00 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.0.2/28 brd 192.168.0.15 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe58:af00/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:7d:7d:70 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.12/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe7d:7d70/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+
+TASK [show routes output] ******************************************************
+changed: [inetRouter]
+changed: [office2Server]
+changed: [centralRouter]
+changed: [office1Server]
+changed: [office1Router]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "default via 192.168.1.1 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.1.0/25 dev eth1 proto kernel scope link src 192.168.1.2 ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.31 "
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "default via 192.168.255.1 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.0.0/28 dev eth2 proto kernel scope link src 192.168.0.1 ",
+        "192.168.0.32/28 dev eth3 proto kernel scope link src 192.168.0.33 ",
+        "192.168.0.64/26 dev eth4 proto kernel scope link src 192.168.0.65 ",
+        "192.168.1.0/26 via 192.168.255.6 dev eth6 proto static ",
+        "192.168.1.128/26 via 192.168.255.6 dev eth6 proto static ",
+        "192.168.1.192/26 via 192.168.255.6 dev eth6 proto static ",
+        "192.168.2.0/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.2.64/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.2.128/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.2.192/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.50.0/24 dev eth7 proto kernel scope link src 192.168.50.11 ",
+        "192.168.255.0/30 dev eth1 proto kernel scope link src 192.168.255.2 ",
+        "192.168.255.4/30 dev eth6 proto kernel scope link src 192.168.255.5 ",
+        "192.168.255.8/30 dev eth5 proto kernel scope link src 192.168.255.9 "
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100 ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.2 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.0.0/16 via 192.168.255.2 dev eth1 proto static ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.10 ",
+        "192.168.255.0/30 dev eth1 proto kernel scope link src 192.168.255.1 "
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "default via 192.168.255.9 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.2.0/26 dev eth2 proto kernel scope link src 192.168.2.1 ",
+        "192.168.2.64/26 dev eth3 proto kernel scope link src 192.168.2.65 ",
+        "192.168.2.128/26 dev eth4 proto kernel scope link src 192.168.2.129 ",
+        "192.168.2.192/26 dev eth5 proto kernel scope link src 192.168.2.193 ",
+        "192.168.50.0/24 dev eth6 proto kernel scope link src 192.168.50.20 ",
+        "192.168.255.8/30 dev eth1 proto kernel scope link src 192.168.255.10 "
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "default via 192.168.255.5 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.1.0/25 dev eth2 proto kernel scope link src 192.168.1.1 ",
+        "192.168.1.128/26 dev eth3 proto kernel scope link src 192.168.1.129 ",
+        "192.168.1.192/26 dev eth4 proto kernel scope link src 192.168.1.193 ",
+        "192.168.50.0/24 dev eth5 proto kernel scope link src 192.168.50.30 ",
+        "192.168.255.4/30 dev eth1 proto kernel scope link src 192.168.255.6 "
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "default via 192.168.2.129 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.2.128/26 dev eth1 proto kernel scope link src 192.168.2.130 ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.21 "
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "default via 192.168.0.1 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.0.0/28 dev eth1 proto kernel scope link src 192.168.0.2 ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.12 "
+    ]
+}
+
+TASK [Reboot machine and send a message] ***************************************
+changed: [inetRouter]
+changed: [office1Server]
+changed: [centralRouter]
+changed: [office1Router]
+changed: [office2Server]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [show iptables nat after reboot] ******************************************
+skipping: [office2Server]
+skipping: [centralRouter]
+skipping: [office1Router]
+skipping: [office1Server]
+skipping: [office2Router]
+skipping: [centralServer]
+changed: [inetRouter]
+
+TASK [debug] *******************************************************************
+skipping: [office2Server]
+skipping: [centralRouter]
+skipping: [office1Router]
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "Chain PREROUTING (policy ACCEPT 3 packets, 132 bytes)",
+        " pkts bytes target     prot opt in     out     source               destination         ",
+        "",
+        "Chain INPUT (policy ACCEPT 3 packets, 132 bytes)",
+        " pkts bytes target     prot opt in     out     source               destination         ",
+        "",
+        "Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)",
+        " pkts bytes target     prot opt in     out     source               destination         ",
+        "",
+        "Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)",
+        " pkts bytes target     prot opt in     out     source               destination         ",
+        "    0     0 MASQUERADE  all  --  *      eth0    0.0.0.0/0           !192.168.0.0/16      "
+    ]
+}
+skipping: [office1Server]
+skipping: [office2Router]
+skipping: [centralServer]
+
+TASK [print status net.ipv4.forwarding] ***********************************************************************************************************************************************************************************************************
+[WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+changed: [inetRouter]
+changed: [office1Server]
+changed: [office2Server]
+changed: [centralServer]
+changed: [centralRouter]
+changed: [office1Router]
+changed: [office2Router]
+
+TASK [debug] **************************************************************************************************************************************************************************************************************************************
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 0"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 0"
+    ]
+}
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 0"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "net.ipv4.conf.all.forwarding = 1"
+    ]
+}
+
+TASK [show addresses output after reboot] **************************************
+changed: [inetRouter]
+changed: [office1Router]
+changed: [office2Server]
+changed: [office1Server]
+changed: [centralRouter]
+changed: [office2Router]
+changed: [centralServer]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86295sec preferred_lft 86295sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:1a:f6:47 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.1.2/25 brd 192.168.1.127 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe1a:f647/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:36:d0:26 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.31/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe36:d026/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86220sec preferred_lft 86220sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:6c:8c:2e brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.2/30 brd 192.168.255.3 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe6c:8c2e/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:1c:61:8a brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s9",
+        "    inet 192.168.0.1/28 brd 192.168.0.15 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe1c:618a/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "5: eth3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:5c:58:1a brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s10",
+        "    inet 192.168.0.33/28 brd 192.168.0.47 scope global eth3",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe5c:581a/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "6: eth4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:25:32:69 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s16",
+        "    inet 192.168.0.65/26 brd 192.168.0.127 scope global eth4",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe25:3269/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "7: eth5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:47:d4:ff brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s17",
+        "    inet 192.168.255.9/30 brd 192.168.255.11 scope global eth5",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe47:d4ff/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "8: eth6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:4b:f4:d2 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s18",
+        "    inet 192.168.255.5/30 brd 192.168.255.7 scope global eth6",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe4b:f4d2/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "9: eth7: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:7e:42:2b brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.11/24 brd 192.168.50.255 scope global eth7",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe7e:422b/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86201sec preferred_lft 86201sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:cb:71:53 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.1/30 brd 192.168.255.3 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fecb:7153/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:69:46:b6 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.10/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe69:46b6/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86222sec preferred_lft 86222sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:42:56:1f brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.10/30 brd 192.168.255.11 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe42:561f/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:a7:03:f1 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s9",
+        "    inet 192.168.2.1/26 brd 192.168.2.63 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fea7:3f1/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "5: eth3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:0d:66:fa brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s10",
+        "    inet 192.168.2.65/26 brd 192.168.2.127 scope global eth3",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe0d:66fa/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "6: eth4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:d1:a7:0a brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s16",
+        "    inet 192.168.2.129/26 brd 192.168.2.191 scope global eth4",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fed1:a70a/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "7: eth5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:28:e6:76 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s17",
+        "    inet 192.168.2.193/26 brd 192.168.2.255 scope global eth5",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe28:e676/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "8: eth6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:cd:cc:c4 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.20/24 brd 192.168.50.255 scope global eth6",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fecd:ccc4/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86345sec preferred_lft 86345sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:58:af:00 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.0.2/28 brd 192.168.0.15 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe58:af00/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:7d:7d:70 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.12/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe7d:7d70/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86339sec preferred_lft 86339sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:18:e9:68 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.255.6/30 brd 192.168.255.7 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe18:e968/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:73:13:73 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s9",
+        "    inet 192.168.1.1/25 brd 192.168.1.127 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe73:1373/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "5: eth3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:50:fe:f5 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s10",
+        "    inet 192.168.1.129/26 brd 192.168.1.191 scope global eth3",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe50:fef5/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "6: eth4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:f6:8b:aa brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s16",
+        "    inet 192.168.1.193/26 brd 192.168.1.255 scope global eth4",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fef6:8baa/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "7: eth5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:6f:c2:7d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.30/24 brd 192.168.50.255 scope global eth5",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe6f:c27d/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000",
+        "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00",
+        "    inet 127.0.0.1/8 scope host lo",
+        "       valid_lft forever preferred_lft forever",
+        "2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:ed:13:5d brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s3",
+        "    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0",
+        "       valid_lft 86206sec preferred_lft 86206sec",
+        "    inet6 fe80::a00:27ff:feed:135d/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:85:90:3b brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s8",
+        "    inet 192.168.2.130/26 brd 192.168.2.191 scope global eth1",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe85:903b/64 scope link ",
+        "       valid_lft forever preferred_lft forever",
+        "4: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000",
+        "    link/ether 08:00:27:64:12:e0 brd ff:ff:ff:ff:ff:ff",
+        "    altname enp0s19",
+        "    inet 192.168.50.21/24 brd 192.168.50.255 scope global eth2",
+        "       valid_lft forever preferred_lft forever",
+        "    inet6 fe80::a00:27ff:fe64:12e0/64 scope link ",
+        "       valid_lft forever preferred_lft forever"
+    ]
+}
+
+TASK [show routes output after reboot] *****************************************
+changed: [office2Server]
+changed: [office1Router]
+changed: [centralRouter]
+changed: [inetRouter]
+changed: [office1Server]
+changed: [centralServer]
+changed: [office2Router]
+
+TASK [debug] *******************************************************************
+ok: [office2Server] => {
+    "results.stdout_lines": [
+        "default via 192.168.1.1 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.1.0/25 dev eth1 proto kernel scope link src 192.168.1.2 ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.31 "
+    ]
+}
+ok: [centralRouter] => {
+    "results.stdout_lines": [
+        "default via 192.168.255.1 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.0.0/28 dev eth2 proto kernel scope link src 192.168.0.1 ",
+        "192.168.0.32/28 dev eth3 proto kernel scope link src 192.168.0.33 ",
+        "192.168.0.64/26 dev eth4 proto kernel scope link src 192.168.0.65 ",
+        "192.168.1.0/26 via 192.168.255.6 dev eth6 proto static ",
+        "192.168.1.128/26 via 192.168.255.6 dev eth6 proto static ",
+        "192.168.1.192/26 via 192.168.255.6 dev eth6 proto static ",
+        "192.168.2.0/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.2.64/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.2.128/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.2.192/26 via 192.168.255.10 dev eth5 proto static ",
+        "192.168.50.0/24 dev eth7 proto kernel scope link src 192.168.50.11 ",
+        "192.168.255.0/30 dev eth1 proto kernel scope link src 192.168.255.2 ",
+        "192.168.255.4/30 dev eth6 proto kernel scope link src 192.168.255.5 ",
+        "192.168.255.8/30 dev eth5 proto kernel scope link src 192.168.255.9 "
+    ]
+}
+ok: [office1Router] => {
+    "results.stdout_lines": [
+        "default via 192.168.255.9 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.2.0/26 dev eth2 proto kernel scope link src 192.168.2.1 ",
+        "192.168.2.64/26 dev eth3 proto kernel scope link src 192.168.2.65 ",
+        "192.168.2.128/26 dev eth4 proto kernel scope link src 192.168.2.129 ",
+        "192.168.2.192/26 dev eth5 proto kernel scope link src 192.168.2.193 ",
+        "192.168.50.0/24 dev eth6 proto kernel scope link src 192.168.50.20 ",
+        "192.168.255.8/30 dev eth1 proto kernel scope link src 192.168.255.10 "
+    ]
+}
+ok: [inetRouter] => {
+    "results.stdout_lines": [
+        "default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100 ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.2 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.0.0/16 via 192.168.255.2 dev eth1 proto static ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.10 ",
+        "192.168.255.0/30 dev eth1 proto kernel scope link src 192.168.255.1 "
+    ]
+}
+ok: [office1Server] => {
+    "results.stdout_lines": [
+        "default via 192.168.2.129 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.2.128/26 dev eth1 proto kernel scope link src 192.168.2.130 ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.21 "
+    ]
+}
+ok: [office2Router] => {
+    "results.stdout_lines": [
+        "default via 192.168.255.5 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.1.0/25 dev eth2 proto kernel scope link src 192.168.1.1 ",
+        "192.168.1.128/26 dev eth3 proto kernel scope link src 192.168.1.129 ",
+        "192.168.1.192/26 dev eth4 proto kernel scope link src 192.168.1.193 ",
+        "192.168.50.0/24 dev eth5 proto kernel scope link src 192.168.50.30 ",
+        "192.168.255.4/30 dev eth1 proto kernel scope link src 192.168.255.6 "
+    ]
+}
+ok: [centralServer] => {
+    "results.stdout_lines": [
+        "default via 192.168.0.1 dev eth1 proto static ",
+        "10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100 ",
+        "10.0.2.3 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 ",
+        "192.168.0.0/28 dev eth1 proto kernel scope link src 192.168.0.2 ",
+        "192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.12 "
+    ]
+}
+
+PLAY RECAP *********************************************************************
+centralRouter              : ok=29   changed=18   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+centralServer              : ok=29   changed=17   unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+inetRouter                 : ok=31   changed=19   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+office1Router              : ok=29   changed=18   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+office1Server              : ok=29   changed=17   unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+office2Router              : ok=29   changed=18   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+office2Server              : ok=29   changed=17   unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+
+root@evengtest:/home/eve/homework19# 
+root@evengtest:/home/eve/homework19# 
