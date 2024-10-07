@@ -1,0 +1,160 @@
+---
+- name: Time configuration
+  hosts: all
+  become: 'yes'
+
+  tasks:
+
+# Настройка Timezone и времени
+    - name: set timezone
+      shell:
+        timedatectl set-timezone  Asia/Yekaterinburg
+
+    - name: timesync-status
+      shell:
+        timedatectl timesync-status
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: print timedatectl
+      shell:
+        timedatectl
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: print date
+      shell:
+        date
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# Установка traceroute
+    - name: Install traceroute
+      apt:
+        name: traceroute
+        state: present
+
+# Отключаем ufw        
+    - name: ufw disable
+      systemd:
+        name: ufw.service
+        state: stopped
+        enabled: no
+
+    - name: print status ufw
+      shell:
+        ufw status
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# Включаем NAT в сторону Интернета на inetRouter
+    - name: Set up NAT on inetRouter
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: "{{ item.mode }}"
+      with_items:
+        - { src: "../files/iptables_rules.ipv4", dest: "/etc/iptables_rules.ipv4", mode: "0644" }
+        - { src: "../files/iptables", dest: "/etc/network/if-pre-up.d/iptables", mode: "0755" }
+      when: (ansible_hostname == "inetRouter")
+
+# Включаем IP forwarding для всех роутеров
+    - name: set up ip forwarding across routers
+      sysctl:
+        name: net.ipv4.conf.all.forwarding
+        value: '1'
+        sysctl_set: yes
+        state: present
+        reload: yes
+      when: "'routers' in group_names"
+
+    - name: print status net.ipv4.forwarding
+      shell:
+        sudo sysctl -a | grep net.ipv4.conf.all.forwarding
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# Отключаем маршрут по умолчанию на всех роутерах, кроме inetRouter
+    - name: disable default route
+      template:
+        src: ../files/00-installer-config.yaml
+        dest: /etc/netplan/00-installer-config.yaml
+        owner: root
+        group: root
+        mode: 0644
+      when: (ansible_hostname != "inetRouter")
+
+# Настройка маршрутов на роутерах
+    - name: add routes for all routers
+      blockinfile:
+        block: "{{ lookup('ansible.builtin.file', '../files/50-vagrant_{{ansible_hostname}}.yaml') }}"
+        dest: /etc/netplan/50-vagrant.yaml
+        marker: "#    <!-- {mark} Ansible managed block -->"
+
+# Применяем настройки netplan
+    - name: netplan apply
+      shell:
+        netplan apply
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# Проверяем применение сетевых настроек      
+    - name: show addresses output
+      shell:
+        ip a
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: show routes output
+      shell:
+        ip r
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# Перезагружаем  все маршрутизаторы     
+    - name: Reboot machine and send a message
+      reboot:
+        reboot_timeout: 600
+
+# Проверяем применение iptables на inetRouter   
+    - name: show iptables nat after reboot
+      shell:
+        iptables -t nat -L -n -v
+      register: results
+      when: (ansible_hostname == "inetRouter")
+    - debug:
+       var: results.stdout_lines
+      when: (ansible_hostname == "inetRouter")
+
+# Проверяем включение ipv4.forwarding после ребута
+    - name: print status net.ipv4.forwarding after reboot
+      shell:
+        sudo sysctl -a | grep net.ipv4.conf.all.forwarding
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# Проверяем маршруты после ребута
+    - name: show addresses output after reboot
+      shell:
+        ip a
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: show routes output after reboot
+      shell:
+        ip r
+      register: results
+    - debug:
+       var: results.stdout_lines
