@@ -1,0 +1,5 @@
+<Directory /srv/ks>
+Options Indexes MultiViews
+AllowOverride All
+Require all granted
+</Directory>

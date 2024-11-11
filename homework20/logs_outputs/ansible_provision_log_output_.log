@@ -1,0 +1,258 @@
+root@evengtest:/home/eve/homework20# 
+root@evengtest:/home/eve/homework20# 
+root@evengtest:/home/eve/homework20# vagrant status 
+Current machine states:
+
+pxeserver                 not created (virtualbox)
+pxeclient                 not created (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+root@evengtest:/home/eve/homework20# 
+root@evengtest:/home/eve/homework20# 
+root@evengtest:/home/eve/homework20# vagrant up pxeserver
+Bringing machine 'pxeserver' up with 'virtualbox' provider...
+==> pxeserver: Importing base box 'bento/ubuntu-22.04'...
+==> pxeserver: Matching MAC address for NAT networking...
+==> pxeserver: Setting the name of the VM: homework20_pxeserver_1731336678033_66773
+==> pxeserver: Clearing any previously set network interfaces...
+==> pxeserver: Preparing network interfaces based on configuration...
+    pxeserver: Adapter 1: nat
+    pxeserver: Adapter 2: intnet
+    pxeserver: Adapter 3: hostonly
+==> pxeserver: Forwarding ports...
+    pxeserver: 80 (guest) => 8080 (host) (adapter 1)
+    pxeserver: 22 (guest) => 2222 (host) (adapter 1)
+==> pxeserver: Running 'pre-boot' VM customizations...
+==> pxeserver: Booting VM...
+==> pxeserver: Waiting for machine to boot. This may take a few minutes...
+    pxeserver: SSH address: 127.0.0.1:2222
+    pxeserver: SSH username: vagrant
+    pxeserver: SSH auth method: private key
+    pxeserver: Warning: Connection reset. Retrying...
+    pxeserver: Warning: Remote connection disconnect. Retrying...
+    pxeserver: 
+    pxeserver: Vagrant insecure key detected. Vagrant will automatically replace
+    pxeserver: this with a newly generated keypair for better security.
+    pxeserver: 
+    pxeserver: Inserting generated public key within guest...
+    pxeserver: Removing insecure key from the guest if it's present...
+    pxeserver: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> pxeserver: Machine booted and ready!
+==> pxeserver: Checking for guest additions in VM...
+    pxeserver: The guest additions on this VM do not match the installed version of
+    pxeserver: VirtualBox! In most cases this is fine, but in rare cases it can
+    pxeserver: prevent things such as shared folders from working properly. If you see
+    pxeserver: shared folder errors, please make sure the guest additions within the
+    pxeserver: virtual machine match the version of VirtualBox you have installed on
+    pxeserver: your host and reload your VM.
+    pxeserver: 
+    pxeserver: Guest Additions Version: 7.0.18
+    pxeserver: VirtualBox Version: 6.1
+==> pxeserver: Setting hostname...
+==> pxeserver: Configuring and enabling network interfaces...
+==> pxeserver: Running provisioner: ansible...
+    pxeserver: Running ansible-playbook...
+
+PLAY [Time configuration] ******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [pxeserver]
+
+TASK [set timezone] ************************************************************
+changed: [pxeserver]
+
+TASK [timesync-status] *********************************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "       Server: n/a (ntp.ubuntu.com)",
+        "Poll interval: 0 (min: 32s; max 34min 8s)",
+        " Packet count: 0"
+    ]
+}
+
+TASK [print timedatectl] *******************************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "               Local time: Mon 2024-11-11 19:54:04 +05",
+        "           Universal time: Mon 2024-11-11 14:54:04 UTC",
+        "                 RTC time: Mon 2024-11-11 14:54:04",
+        "                Time zone: Asia/Yekaterinburg (+05, +0500)",
+        "System clock synchronized: yes",
+        "              NTP service: active",
+        "          RTC in local TZ: no"
+    ]
+}
+
+TASK [print date] **************************************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "Mon Nov 11 07:54:07 PM +05 2024"
+    ]
+}
+
+TASK [ufw disable] *************************************************************
+changed: [pxeserver]
+
+TASK [print status ufw] ********************************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "Status: inactive"
+    ]
+}
+
+TASK [Install dnsmasq] *********************************************************
+changed: [pxeserver]
+
+TASK [config pxe.conf] *********************************************************
+changed: [pxeserver]
+
+TASK [create dir /srv/tftp] ****************************************************
+changed: [pxeserver]
+
+TASK [print check create dir's] ************************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        ".",
+        ".."
+    ]
+}
+
+TASK [download and unarchive noble-netboot-amd64.tar.gz file] ******************
+changed: [pxeserver]
+
+TASK [check status unpacked files] *********************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "-rw-r--r-- 1 root root   966664 Apr  4  2024 /srv/tftp/amd64/bootx64.efi",
+        "-rw-r--r-- 1 root root  2340744 Apr  4  2024 /srv/tftp/amd64/grubx64.efi",
+        "-rw-r--r-- 1 root root 68878620 Aug 27 19:28 /srv/tftp/amd64/initrd",
+        "-rw-r--r-- 1 root root   118676 Apr  8  2024 /srv/tftp/amd64/ldlinux.c32",
+        "-rw-r--r-- 1 root root 14948744 Aug 27 19:28 /srv/tftp/amd64/linux",
+        "-rw-r--r-- 1 root root    42392 Apr  8  2024 /srv/tftp/amd64/pxelinux.0",
+        "",
+        "/srv/tftp/amd64/grub:",
+        "total 4",
+        "-rw-r--r-- 1 root root 204 Aug 27 19:28 grub.cfg",
+        "",
+        "/srv/tftp/amd64/pxelinux.cfg:",
+        "total 4",
+        "-rw-r--r-- 1 root root 199 Aug 27 19:28 default"
+    ]
+}
+
+TASK [restart dnsmasq] *********************************************************
+changed: [pxeserver]
+
+TASK [Install apache2] *********************************************************
+changed: [pxeserver]
+
+TASK [create dir /srv/images] **************************************************
+changed: [pxeserver]
+
+TASK [check created dir image] *************************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "total 8",
+        "drwxr-xr-x 2 root root 4096 Nov 11 19:58 .",
+        "drwxr-xr-x 4 root root 4096 Nov 11 19:58 .."
+    ]
+}
+
+TASK [download ubuntu24 iso file for netboot] **********************************
+changed: [pxeserver]
+
+TASK [check download ubuntu24 iso] *********************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "-rw-r--r-- 1 root root 2773874688 Nov 11 20:02 /srv/images/ubuntu-24.04.1-live-server-amd64.iso"
+    ]
+}
+
+TASK [config ks-server.conf] ***************************************************
+changed: [pxeserver]
+
+TASK [ks-server config activate] ***********************************************
+[WARNING]: Consider using 'become', 'become_method', and 'become_user' rather
+than running sudo
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "Enabling site ks-server.",
+        "To activate the new configuration, you need to run:",
+        "  systemctl reload apache2"
+    ]
+}
+
+TASK [config /srv/tftp/amd64/pxelinux.cfg/default] *****************************
+changed: [pxeserver]
+
+TASK [restart apache2] *********************************************************
+changed: [pxeserver]
+
+TASK [create dir '/srv/ks'] ****************************************************
+changed: [pxeserver]
+
+TASK [config '/srv/ks/user-data'] **********************************************
+changed: [pxeserver]
+
+TASK [create file for meta-data] ***********************************************
+changed: [pxeserver]
+
+TASK [add routes for all routers] **********************************************
+changed: [pxeserver]
+
+TASK [append '/srv/ks' options to pxe.default config] **************************
+changed: [pxeserver]
+
+TASK [check append option '/srv/ks'] *******************************************
+changed: [pxeserver]
+
+TASK [debug] *******************************************************************
+ok: [pxeserver] => {
+    "results.stdout_lines": [
+        "DEFAULT install",
+        "LABEL install",
+        "KERNEL linux",
+        "INITRD initrd",
+        "APPEND root=/dev/ram0 ramdisk_size=3600000 ip=dhcp iso-url=http://10.0.0.20/srv/images/ubuntu-24.04.1-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://10.0.0.20/srv/ks/"
+    ]
+}
+
+TASK [restart dnsmasq] *********************************************************
+changed: [pxeserver]
+
+TASK [restart apache2] *********************************************************
+changed: [pxeserver]
+
+PLAY RECAP *********************************************************************
+pxeserver                  : ok=41   changed=30   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+root@evengtest:/home/eve/homework20# 

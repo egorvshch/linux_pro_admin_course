@@ -1,0 +1,248 @@
+---
+- name: Time configuration
+  hosts: all
+  become: 'yes'
+
+  tasks:
+
+### 0 Общая подготовка
+
+# Настройка Timezone и времени
+    - name: set timezone
+      shell:
+        timedatectl set-timezone  Asia/Yekaterinburg
+
+    - name: timesync-status
+      shell:
+        timedatectl timesync-status
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: print timedatectl
+      shell:
+        timedatectl
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+    - name: print date
+      shell:
+        date
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+### 1. Настройка DHCP и TFTP-сервера
+#Для того, чтобы наш клиент мог получить ip-адрес нам требуется DHCP-сервер, чтобы можно было получить
+#файл pxelinux.0 нам потребуется TFTP-сервер. Утилита dnsmasq совмещает в себе сразу и DHCP и TFTP-сервер.
+
+# 1) Отключаем ufw        
+    - name: ufw disable
+      systemd:
+        name: ufw.service
+        state: stopped
+        enabled: no
+
+    - name: print status ufw
+      shell:
+        ufw status
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# 2) Установка dnsmasq (DHCP и TFTP сервер)
+    - name: Install dnsmasq
+      apt:
+        name: dnsmasq
+        state: present
+        update_cache: yes
+
+# 3) Конфигурация файла pxe.conf
+    - name: config pxe.conf
+      template:
+        src: ../files/pxe.conf
+        dest: /etc/dnsmasq.d/pxe.conf
+        owner: root
+        group: root
+        mode: 0644
+
+# 4) создаём каталоги для файлов TFTP-сервера
+    - name: create dir /srv/tftp
+      file:
+        path: /srv/tftp
+        state: directory
+        mode: 0755
+
+    - name: print check create dir's
+      shell:
+        cmd: 'ls -a /srv/tftp'
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# 5) Скачиваем файлы для сетевой установки Ubuntu 24.04 и распаковываем их в каталог /srv/tftp
+
+    - name: download and unarchive noble-netboot-amd64.tar.gz file
+      unarchive:
+        src: http://releases.ubuntu.com/noble/ubuntu-24.04.1-netboot-amd64.tar.gz
+        dest: /srv/tftp
+        remote_src: yes
+
+# Проверяем, что фалы распакованы
+    - name: check status unpacked files
+      shell:
+        cmd: 'ls -l /srv/tftp/amd64/*'
+      register: results
+    - debug:
+        var: results.stdout_lines
+
+# 6) Перезапускаем службу dnsmasq
+    - name: restart dnsmasq
+      systemd:
+        name: dnsmasq
+        state: restarted
+
+### 2. Настройка Web-сервера
+#Для того, чтобы отдавать файлы по HTTP нам потребуется настроенный веб-сервер.
+
+# 1) Устанавливаем Web-сервер apache2
+    - name: Install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+# 2) Создаём каталоги /srv/images для iso-образов для установки по сети
+    - name: create dir /srv/images
+      file:
+        path: /srv/images
+        state: directory
+        mode: 0755
+
+    - name: check created dir image
+      shell:
+        cmd: 'ls -al /srv/images'
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+
+# 3) Переходим в каталог /srv/images и скачиваем iso-образ ubuntu 24.04
+#    - name: download ubuntu24 iso file for netboot
+#      get_url:
+#        url: http://releases.ubuntu.com/noble/ubuntu-24.04.1-live-server-amd64.iso
+#        dest: /srv/images/ubuntu-24.04.1-live-server-amd64.iso
+#        force: yes
+
+    - name: download ubuntu24 iso file for netboot
+      copy:
+        src: ../files/ubuntu-24.04.1-live-server-amd64.iso
+        dest: /srv/images/ubuntu-24.04.1-live-server-amd64.iso
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: check download ubuntu24 iso
+      shell:
+        cmd: 'ls -al /srv/images/*'
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# 4) Создаём файл /etc/apache2/sites-available/ks-server.conf с конфигурацией WEB-сервера
+    - name: config ks-server.conf
+      template:
+        src: ../files/ks-server.conf
+        dest: /etc/apache2/sites-available/ks-server.conf
+        owner: root
+        group: root
+        mode: 0644
+
+# 5) Активируем конфигурацию ks-server в apache
+    - name: ks-server config activate
+      shell:
+        cmd: 'sudo a2ensite ks-server.conf'
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# 6) Вносим изменения в файл /srv/tftp/amd64/pxelinux.cfg/default. 
+# В данном файле мы указываем что файлы linux и initrd будут забираться по tftp, 
+# а сам iso-образ ubuntu 24.04 будет скачиваться из нашего веб-сервера http://10.0.0.20/srv/images/noble-live-server-amd64.iso
+# Из-за того, что образ достаточно большой (2.6G) и он сначала загружается в ОЗУ, необходимо указать размер ОЗУ до 3 гигабайт (root=/dev/ram0 ramdisk_size=3000000)
+
+    - name: config /srv/tftp/amd64/pxelinux.cfg/default
+      template:
+        src: ../files/pxelinux.cfg_default
+        dest: /srv/tftp/amd64/pxelinux.cfg/default
+        owner: root
+        group: root
+        mode: 0644
+
+# 7) Перезапускаем службу apache2
+    - name: restart apache2
+      systemd:
+        name: apache2
+        state: restarted
+
+### 3. Настройка автоматической установки Ubuntu 24.04
+
+# 1) cоздаём каталог для файлов с автоматической установкой mkdir /srv/ks
+    - name: create dir '/srv/ks'
+      file:
+        path: /srv/ks
+        state: directory
+        mode: 0755
+
+# 2) создаём файл /srv/ks/user-data и добавляем в него содержимое /files/user-data
+
+    - name: config '/srv/ks/user-data'
+      template:
+        src: ../files/user-data
+        dest: /srv/ks/user-data
+        owner: root
+        group: root
+        mode: 0644
+
+# 3) создаём файл с метаданными /srv/ks/meta-data
+    - name: create file for meta-data
+      file:
+        path: /srv/ks/meta-data
+        state: touch
+        owner: root
+        group: root
+        mode: 0644
+
+# 4) в конфигурации веб-сервера добавим каталог /srv/ks идёнтично каталогу /srv/images
+    - name: add routes for all routers
+      blockinfile:
+        block: "{{ lookup('ansible.builtin.file', '../files/srv_ks') }}"
+        dest: /etc/apache2/sites-available/ks-server.conf
+        insertafter: "</Directory>"
+        marker: "#    add directory from ansible"
+
+# 5) в файле /srv/tftp/amd64/pxelinux.cfg/default добавляем параметры автоматической установки
+
+    - name: append '/srv/ks' options to pxe.default config
+      template:
+        src: ../files/pxelinux.cfg_default_2
+        dest: /srv/tftp/amd64/pxelinux.cfg/default
+
+    - name: check append option '/srv/ks'
+      shell:
+        cmd: 'cat /srv/tftp/amd64/pxelinux.cfg/default'
+      register: results
+    - debug:
+       var: results.stdout_lines
+
+# 6) перезапускаем службы dnsmasq и apache2
+    - name: restart dnsmasq
+      systemd:
+        name: dnsmasq
+        state: restarted
+
+    - name: restart apache2
+      systemd:
+        name: apache2
+        state: restarted
