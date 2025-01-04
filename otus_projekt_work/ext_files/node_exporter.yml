@@ -1,0 +1,38 @@
+
+---
+- name: Node Exporter install
+  hosts: backend2
+  become: 'yes'
+
+  tasks:
+
+  - name: Downloading Node Exporter
+    get_url:
+      url: https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+      dest: /home/vagrant/node_exporter-1.8.2.linux-amd64.tar.gz
+
+  - name: Unarchiving Node Exporter
+    unarchive:
+      src: /home/vagrant/node_exporter-1.8.2.linux-amd64.tar.gz
+      dest: /home/vagrant/
+      remote_src: true
+
+  - name: Copy files Node Exporter
+    command: "cp /home/vagrant/node_exporter-1.8.2.linux-amd64/node_exporter /usr/local/bin/"
+
+  - name: Copying service file node_exporter
+    copy:
+      src: "node_exporter.service"
+      dest: "/etc/systemd/system/"
+      owner: root
+      group: root
+#    mode: 0755
+
+  - name: systemctl daemon-reload
+    command: "sudo systemctl daemon-reload"
+
+  - name: systemctl daemon-reload
+    command: "sudo systemctl enable node_exporter"
+
+  - name: systemctl daemon-reload
+    command: "sudo systemctl start node_exporter"

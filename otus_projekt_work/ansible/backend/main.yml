@@ -1,0 +1,91 @@
+---
+#- name: Main configuration backend servers
+#  hosts: backend1,backend2
+#  become: 'yes'
+
+#  vars:
+#   mysql_root_pass: "pass123"
+#   mysql_wp_pass: "pass123"
+#   mysql_user_pass: "pass123"
+
+
+#  tasks:
+
+  - name: Install Apache and soft packeges on Server
+    apt:
+      name:
+        - apache2
+        - php
+        - php-mysql
+        - libapache2-mod-rpaf
+        - libapache2-mod-php
+        - php-cli
+        - php-cgi
+        - php-gd
+      state: present
+      update_cache: yes
+
+  - name: Enable Apache modules
+    apache2_module:
+      state: present
+      name: "{{ item.module }}"
+    with_items:
+      - { module: "rewrite" }
+      - { module: "rpaf" }
+      - { module: "remoteip" }
+
+  - name: Copy Apache config files
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: root
+      mode: 0644
+    with_items:
+      - { src: "files/000-default.conf.j2", dest: "/etc/apache2/sites-available/000-default.conf"}
+      - { src: "files/ports.conf.j2", dest: "/etc/apache2/ports.conf"}
+      - { src: "files/remoteip.conf.j2", dest: "/etc/apache2/conf-available/remoteip.conf"}
+    notify: Restart apache2
+
+  - name: Download install files for WordPress
+    get_url:
+      url: http://wordpress.org/latest.tar.gz
+      dest: /home/vagrant/latest.tar.gz
+
+  - name: Unarchive install files for WordPress
+    unarchive:
+      src: /home/vagrant/latest.tar.gz
+      dest: /var/www/html/
+      remote_src: true
+    notify: Restart apache2
+
+  - name: Copy config files for WordPress
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: www-data
+      group: www-data
+      mode: 0755
+    with_items:
+      - { src: "files/wp-config.php.j2", dest: "/var/www/html/wordpress/wp-config.php" }
+      - { src: "files/functions.php.j2", dest: "/var/www/html/wordpress/wp-content/themes/twentytwentyfive/functions.php" }
+    notify: Restart apache2
+
+  - name: Change rights for files of Wordpress
+    file:
+      path: /var/www/html/wordpress
+      recurse: yes
+      owner: www-data
+      group: www-data
+      mode: 0744
+    notify: Restart apache2
+
+#  handlers:
+  - name: Restart apache2
+    systemd:
+      name: apache2
+      state: restarted
+
+  - include_tasks: backend/preinstall.yml
+  - include_tasks: backend/firewall.yml
+...
