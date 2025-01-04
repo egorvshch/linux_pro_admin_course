@@ -1,7 +1,0 @@
----
-
-mysql_root_pass: "pass123"
-mysql_wp_pass: "pass123"
-mysql_user_pass: "pass123"
-master_host: "192.168.50.110"
-...
