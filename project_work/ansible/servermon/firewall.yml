@@ -1,0 +1,94 @@
+---
+#- name: Iptables configuration on Monitoring Server
+#  hosts: servermon
+#  become: 'yes'
+
+#  tasks:
+
+- name: Allow traffic through loopback
+  iptables:
+    chain: INPUT
+    in_interface: lo
+    jump: ACCEPT
+
+- name: Allow ESTABLISHED,RELATED connections
+  iptables:
+    chain: INPUT
+    ctstate: ESTABLISHED,RELATED
+    jump: ACCEPT
+
+- name: Drop INVALID connections
+  iptables:
+    chain: INPUT
+    ctstate: INVALID
+    jump: DROP
+
+- name: Allow SSH INPUT connections
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 22
+    ctstate: NEW
+    jump: ACCEPT
+
+- name: Allow INPUT traffic to Grafana
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 3000
+    jump: ACCEPT
+
+- name: Allow INPUT traffic to Prometheus
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 9090
+    jump: ACCEPT
+
+- name: Allow INPUT traffic for node exporter
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 9100
+    jump: ACCEPT
+
+- name: Allow INPUT traffic to Alertmanager
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_ports: "9093:9094"
+    jump: ACCEPT
+
+- name: Allow INPUT traffic to ElasticSearch
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 9200
+    jump: ACCEPT
+
+- name: Allow INPUT traffic to Kibana
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 5601
+    jump: ACCEPT
+
+- name: Allow INPUT traffic to LogStash
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 5044
+    jump: ACCEPT
+
+- name: Allow ICMP
+  iptables:
+    chain: INPUT
+    protocol: icmp
+    jump: ACCEPT
+
+- name: DROP ALL on INPUT
+  iptables:
+    chain: INPUT
+    policy: DROP
+
+...
