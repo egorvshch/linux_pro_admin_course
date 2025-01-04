@@ -58,5 +58,18 @@ ansible-playbook provision.yml --tags frontngnx
 - *{{название_VM }}*/preinstall.yml - реализует дополнительные, но не основные настройки, т.к. настройка часового пояса, синхронизация времени, установка пакета prometheus-node-exporter, конфигурация маршрутов и пр.;<br/>
 - *{{название_VM }}*/firewall.yml - реализует конфигурацию iptables на каждой VM;<br/>
 - *{{название_VM }}*/main_restore.yml - реализует логику восстановления VM после сбоя;<br/>
+<br/>
+***Используемый стек ПО для VM:*** <br/>
+- **frontngnx**:   nginx, prometheus-node-exporter, filebeat_8.9.1;<br/>
+- **backend1, backend2**: apache2, php, php-mysql, libapache2-mod-rpaf, libapache2-mod-php, php-cli, php-cgi, php-gd, wordpress_6.7.1, prometheus-node-exporter;<br/>
+- **dbmaster, dbslave**: mysql-server-8.0, prometheus-node-exporter;<br/>
+- **servermon**: prometheus, prometheus-alertmanager, prometheus-node-exporter, default-jdk, grafana_11.4.0, logstash-8.16.2, elasticsearch-8.16.2, kibana-8.16.2.<br/>
+<br/>
+Доступ к сайту осуществляется по адресу https://my-stend.ru/, DNS прописан локально на ПК в hosts, для https используется самоподписной сертификат выпущенный также для my-stend.ru
+
+Проверка работы стенда и восстановления его работы без потери данных после сбоя на примере вывода из строя основного сервера БД ```dbmaster``` продемонстированы на [видео](https://disk.yandex.ru/i/S5LD1Chx6wmKlA).
+
+
+
 
 
