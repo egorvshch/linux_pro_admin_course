@@ -68,7 +68,7 @@ ansible-playbook provision.yml --tags frontngnx
 - **servermon**: prometheus, prometheus-alertmanager, prometheus-node-exporter, default-jdk, grafana_11.4.0, logstash-8.16.2, elasticsearch-8.16.2, kibana-8.16.2.<br/>
 <br/>
 
-***Результаты***:
+### Результаты:
 
 Доступ к сайту осуществляется по адресу https://my-stend.ru/, DNS прописан локально на ПК в hosts, для https используется самоподписной сертификат выпущенный также для my-stend.ru
 
