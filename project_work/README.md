@@ -67,14 +67,8 @@ ansible-playbook provision.yml --tags frontngnx
 - **dbmaster, dbslave**: mysql-server-8.0, prometheus-node-exporter;<br/>
 - **servermon**: prometheus, prometheus-alertmanager, prometheus-node-exporter, default-jdk, grafana_11.4.0, logstash-8.16.2, elasticsearch-8.16.2, kibana-8.16.2.<br/>
 <br/>
-
 ### Результаты:
-
-Доступ к сайту осуществляется по адресу https://my-stend.ru/, DNS прописан локально на ПК в hosts, для https используется самоподписной сертификат выпущенный также для my-stend.ru
+Доступ к сайту осуществляется по адресу https://my-stend.ru/, DNS прописан локально на ПК в hosts, для https используется самоподписной сертификат выпущенный также для my-stend.ru.<br/>
 
 Проверка работы стенда и восстановления его работы без потери данных после сбоя на примере вывода из строя основного сервера БД ```dbmaster``` продемонстированы на [видео](https://disk.yandex.ru/i/S5LD1Chx6wmKlA).
-
-
-
-
-
+<br/>
