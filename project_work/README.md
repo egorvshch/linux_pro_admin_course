@@ -1,0 +1,1 @@
+## Реализация IaC с использованием Ansible для WEB-сервиса на Wordpress с балансировщиком на Frontend, двумя Backend серверами, базой данных MySQL с репликацией Master-Slave, системой сбора логов в ELK, системой сбора метрик и мониторинга Prometheus/Grafana с оповещением в Telegram 
