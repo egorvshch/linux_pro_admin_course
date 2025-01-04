@@ -29,6 +29,34 @@ vagrant up
 vagrant ssh
 ```
 
-В результате поднимется шесть VM:
+В результате поднимется шесть VM:<br/>
 ```
+root@evengtest:/home/eve/otus_exam/ansible# vagrant status
+Current machine states:
+
+frontngnx                 running (virtualbox)
+backend1                  running (virtualbox)
+backend2                  running (virtualbox)
+dbmaster                  running (virtualbox)
+dbslave                   running (virtualbox)
+servermon                 running (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
 ```
+Вся логика настройки VM с использованием Ansible описана в файле ```ansible/provision.yml```.<br/>
+Запуск плейбука для соответствующей VM осуществляется с помощью тега, соответствующего названию VM.<br/>
+Пример:<br/>
+```
+ansible-playbook provision.yml --tags frontngnx
+```
+Для первоначальной настройки и восстановления всех VM используется тот же тег, кроме основного сервера MySQL ```dbmaster```, для восстановления конфигурации после сбоя которого используется тег ```dbmaster_restore```;<br/>
+
+Все задачи выполняемые в плейбуках имеют соответствующие названия и комментарии, и разбиты на следующие блоки:<br/>
+- *{{название_VM }}*/main.yml - реализует основную конфигурацию VM (установка дистрибутива и конфигурацию приложений);<br/>
+- *{{название_VM }}*/preinstall.yml - реализует дополнительные, но не основные настройки, т.к. настройка часового пояса, синхронизация времени, установка пакета prometheus-node-exporter, конфигурация маршрутов и пр.;<br/>
+- *{{название_VM }}*/firewall.yml - реализует конфигурацию iptables на каждой VM;<br/>
+- *{{название_VM }}*/main_restore.yml - реализует логику восстановления VM после сбоя;<br/>
+
+
