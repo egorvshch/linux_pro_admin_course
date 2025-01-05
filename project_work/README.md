@@ -62,7 +62,7 @@ ansible-playbook provision.yml --tags frontngnx
 - ```{{название_VM }}/main_restore.yml``` - реализует логику восстановления VM после сбоя;<br/>
 <br/>
 
-*** Стек основного ПО для WEB-сервиса***:
+***Стек основного ПО для WEB-сервиса***:
   
 - **frontngnx**: nginx, prometheus-node-exporter, filebeat_8.9.1;<br/>
 - **backend1, backend2**: apache2, wordpress_6.7.1, prometheus-node-exporter;<br/>
